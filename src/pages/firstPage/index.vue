@@ -1,5 +1,8 @@
 <template>
-  <div>第一个页面</div>
+  <div>
+    <van-button type="primary">主要按钮</van-button>
+    <van-button type="info">信息按钮</van-button>
+  </div>
 </template>
 
 <script>
