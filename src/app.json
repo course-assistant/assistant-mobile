@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/firstPage/main"
+    "pages/index/main",
+    "pages/login/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
