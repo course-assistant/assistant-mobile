@@ -10,6 +10,9 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "van-button": "/static/vant/button/index"
+    "van-button": "/static/vant/button/index",
+    "van-field": "/static/vant/field/index",
+    "van-divider": "/static/vant/divider/index",
+    "van-toast": "/static/vant/toast/index"
   }
 }

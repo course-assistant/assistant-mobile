@@ -1,0 +1,30 @@
+{
+  "id": "2388465",
+  "name": "课程助手",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "17883303",
+      "name": "QQ",
+      "font_class": "-qq",
+      "unicode": "e6d7",
+      "unicode_decimal": 59095
+    },
+    {
+      "icon_id": "17013357",
+      "name": "微博",
+      "font_class": "-weibo",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "19420979",
+      "name": "微信",
+      "font_class": "-weixin",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    }
+  ]
+}
