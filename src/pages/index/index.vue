@@ -16,11 +16,23 @@ export default {
           duration: 2000
         })
     */
+
+    this.$get('user/allUsers')
+      .then(res => {
+        console.log(res);
+      });
+
+    this.$post('user/findByIdPost', { id: 5 })
+      .then(res => {
+        console.log(res);
+      });
+
   },
 }
 </script>
 
-<style lang="scss">
+
+<style lang="scss" scoped>
 .container {
   background: greenyellow;
 
@@ -28,4 +40,4 @@ export default {
     color: salmon;
   }
 }
-</style>>
+</style>
