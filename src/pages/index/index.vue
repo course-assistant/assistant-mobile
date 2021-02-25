@@ -20,8 +20,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .container {
   background: greenyellow;
+
+  p {
+    color: salmon;
+  }
 }
-</style>
+</style>>
