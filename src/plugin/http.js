@@ -1,4 +1,5 @@
 import Fly from 'flyio/dist/npm/wx'
+import qs from 'qs';
 
 // const config = {
 
@@ -28,7 +29,7 @@ fly.config.headers = {
 fly.config.timeout = 30000;
 
 //设置请求基地址
-fly.config.baseURL = "http://127.0.0.1:8866/"
+fly.config.baseURL = "http://127.0.0.1:8686/"
 
 //设置公共的Get参数
 // fly.config.params = {
@@ -53,7 +54,7 @@ MyHttp.install = (Vue) => {
 
   Vue.prototype.$post = (path, params) => {
     return new Promise((resolve, reject) => {
-      fly.post(path, params).then(res => {
+      fly.post(path, qs.stringify(params)).then(res => {
         if (res.data.code === 200) {
           resolve(res.data);
         } else if (res.data.code === 400) {
@@ -63,6 +64,13 @@ MyHttp.install = (Vue) => {
         reject('服务器异常');
       });
     });
+  }
+
+  // async/await 错误处理
+  Vue.prototype.$awaitWrap = (promise) => {
+    return promise
+      .then(data => [data, null])
+      .catch(err => [null, err]);
   }
 
 };
