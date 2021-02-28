@@ -9,6 +9,7 @@
           clearable
           label="用户名"
           placeholder="请输入账号"
+          value="888888888"
         />
         <van-field
           @change="passwordChange"
@@ -16,6 +17,7 @@
           type="password"
           label="密码"
           placeholder="请输入密码"
+          value="000000"
         />
         <van-dropdown-menu>
           <van-dropdown-item
@@ -50,6 +52,7 @@
       ></i>
     </div>
 
+    <van-toast id="van-toast" />
     <van-toast id="custom-selector" />
     <van-notify id="van-notify" />
   </div>
@@ -64,8 +67,8 @@ export default {
   data() {
     return {
       loginForm: {
-        username: '',
-        password: '',
+        username: '888888888',
+        password: '000000',
         type: 2,
       },
 
@@ -86,7 +89,7 @@ export default {
         message: '登录中...',
         selector: '#custom-selector',
       });
-
+      // 判断登录
       let [data, err] = await this.$awaitWrap(this.$post('login', {
         username: this.loginForm.username,
         password: MD5(this.loginForm.password),
@@ -97,10 +100,34 @@ export default {
         toast.clear();
         return;
       }
-      console.log(data);
+      // 登录成功，获取token
+      wx.setStorageSync('hncj_assistant_wx_user_token', data.data.token);
+      wx.setStorageSync('hncj_assistant_wx_user_id', data.data.id);
+      // 获取详细信息，然后存到storage里
+      let id = await wx.getStorageSync('hncj_assistant_wx_user_id');
+      if (this.loginForm.type === 2) {
+        [data, err] = await this.$awaitWrap(this.$get('teacher/selectbyid', {
+          id
+        }));
+      } else {
+        [data, err] = await this.$awaitWrap(this.$get('student/selectbyid', {
+          id
+        }));
+      }
+      // console.log(data);
+      // 存储用户的姓名、头像
+      if (this.loginForm.type === 2) {
+        wx.setStorageSync('hncj_assistant_wx_user_name', data.data.teacher_name);
+        wx.setStorageSync('hncj_assistant_wx_user_avatar', data.data.teacher_avatar);
+      } else {
+        wx.setStorageSync('hncj_assistant_wx_user_name', data.data.student_name);
+        wx.setStorageSync('hncj_assistant_wx_user_avatar', data.data.student_avatar);
+      }
       // 清除加载框
       toast.clear();
       Notify({ type: 'success', message: data.msg });
+      // 跳转至对应页面
+      
     },
 
     handleOtherLogin() {
