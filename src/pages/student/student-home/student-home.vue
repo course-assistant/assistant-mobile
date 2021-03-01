@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p>index 页面</p>
+    <p>学生 个人</p>
   </div>
 </template>
 
