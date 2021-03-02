@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Index from './student-home'
+import Index from './teacher'
 
 const index = new Vue(Index)
 

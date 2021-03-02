@@ -29,11 +29,11 @@ export default {
         // 根据type跳转到对应页面
         if (type === 2) {
           // 教师
-          wx.redirectTo({ url: '/pages/teacher/teacher-index/main' });
+          wx.redirectTo({ url: '/pages/teacher/main' });
           return;
         }
         // 学生
-        wx.redirectTo({ url: '/pages/student/student-index/main' });
+        wx.redirectTo({ url: '/pages/student/main' });
       })
       .catch(err => {
         Notify({ type: 'danger', message: err });

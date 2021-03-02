@@ -3,19 +3,20 @@
     "pages/welcome/main",
     "pages/login/main",
 
-    "pages/teacher/teacher-index/main",
-    "pages/teacher/teacher-home/main",
+    "pages/teacher/main",
 
-    "pages/student/student-index/main",
-    "pages/student/student-home/main"
-    
+    "pages/student/main"
   ],
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
+
+
+
   "usingComponents": {
     "van-button": "/static/vant/button/index",
     "van-field": "/static/vant/field/index",
@@ -23,6 +24,8 @@
     "van-toast": "/static/vant/toast/index",
     "van-dropdown-menu": "/static/vant/dropdown-menu/index",
     "van-dropdown-item": "/static/vant/dropdown-item/index",
-    "van-notify": "/static/vant/notify/index"
+    "van-notify": "/static/vant/notify/index",
+    "van-tabbar": "/static/vant/tabbar/index",
+    "van-tabbar-item": "/static/vant/tabbar-item/index"
   }
 }
