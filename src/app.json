@@ -3,10 +3,8 @@
     "pages/welcome/main",
     "pages/login/main",
 
-
     "pages/teacher/teacher-index/main",
     "pages/teacher/teacher-home/main",
-
 
     "pages/student/student-index/main",
     "pages/student/student-home/main"

@@ -102,7 +102,9 @@ export default {
       }
       // 登录成功，获取token
       wx.setStorageSync('hncj_assistant_wx_user_token', data.data.token);
+      wx.setStorageSync('hncj_assistant_wx_user_type', this.loginForm.type);
       wx.setStorageSync('hncj_assistant_wx_user_id', data.data.id);
+
       // 获取详细信息，然后存到storage里
       let id = await wx.getStorageSync('hncj_assistant_wx_user_id');
       if (this.loginForm.type === 2) {
@@ -126,10 +128,19 @@ export default {
       // 清除加载框
       toast.clear();
       Notify({ type: 'success', message: data.msg });
-      // 跳转至对应页面
-      
+
+      // 根据type跳转到对应页面
+      if (this.loginForm.type === 2) {
+        // 教师
+        wx.redirectTo({ url: '/pages/teacher/teacher-index/main' });
+        return;
+      }
+      // 学生
+      wx.redirectTo({ url: '/pages/student/student-index/main' });
     },
 
+
+    // 点击其他登录
     handleOtherLogin() {
       Toast('暂时没用此功能');
     },

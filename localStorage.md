@@ -7,6 +7,7 @@
 | key                                 | 含义                  |
 | ----------------------------------- | --------------------- |
 | hncj_assistant_wx_user_token | 当前用户token       |
+| hncj_assistant_wx_user_type | 当前用户类型，用作登录验证 |
 | hncj_assistant_wx_user_id    | 当前用户id |
 | hncj_assistant_wx_user_name | 当前用户姓名 |
 | hncj_assistant_wx_user_avatar | 当前用户头像 |
