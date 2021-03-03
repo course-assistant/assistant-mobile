@@ -1,14 +1,10 @@
 <template>
-  <div class="course-item">
-    <img
-      class="cover"
-      src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg"
-      alt=""
-    />
+  <div class="course-item" @click="jumpToCourseDetail">
+    <img class="cover" :src="course.course_cover" alt="" />
 
     <div class="desc">
-      <p class="course-name">网站设计技术</p>
-      <p class="teacher-name">张妍琰</p>
+      <p class="course-name">{{ course.course_name }}</p>
+      <p class="teacher-name">{{ course.teacher_name }}</p>
     </div>
 
     <div class="symbol">
@@ -19,6 +15,14 @@
 
 <script>
 export default {
+
+  props: ['course'],
+
+  methods: {
+    jumpToCourseDetail() {
+      console.log('跳转至：' + this.course.course_id);
+    }
+  },
 
 }
 </script>
