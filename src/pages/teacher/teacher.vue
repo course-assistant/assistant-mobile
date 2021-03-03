@@ -3,12 +3,15 @@
     <div class="content">
       <TeacherIndex v-if="active == 0" />
 
-      <TeacherHome v-if="active == 1" />
+      <TeacherCourse v-if="active == 1" />
+
+      <TeacherHome v-if="active == 2" />
     </div>
 
     <!-- tabbar -->
     <van-tabbar :active="active" @change="onTabbarChange">
       <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+      <van-tabbar-item icon="orders-o">课程</van-tabbar-item>
       <van-tabbar-item icon="user-o">我</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -16,6 +19,7 @@
 
 <script>
 import TeacherIndex from './view/teacher-index.vue';
+import TeacherCourse from './view/teacher-course.vue';
 import TeacherHome from './view/teacher-home.vue';
 
 export default {
@@ -27,6 +31,7 @@ export default {
 
   components: {
     TeacherIndex,
+    TeacherCourse,
     TeacherHome
   },
 

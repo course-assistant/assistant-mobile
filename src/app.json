@@ -26,6 +26,8 @@
     "van-dropdown-item": "/static/vant/dropdown-item/index",
     "van-notify": "/static/vant/notify/index",
     "van-tabbar": "/static/vant/tabbar/index",
-    "van-tabbar-item": "/static/vant/tabbar-item/index"
+    "van-tabbar-item": "/static/vant/tabbar-item/index",
+    "van-search": "/static/vant/search/index",
+    "van-icon": "/static/vant/icon/index"
   }
 }
