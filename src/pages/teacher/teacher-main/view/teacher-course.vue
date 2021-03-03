@@ -43,7 +43,9 @@ export default {
 
     // 跳转到教师的课程详情
     jump(id) {
-      console.log(id);
+      wx.navigateTo({
+        url: `/pages/teacher/teacher-course-detail/course-detail/main?course_id=${id}`
+      });
     },
   },
 
