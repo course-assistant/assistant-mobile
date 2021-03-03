@@ -3,9 +3,9 @@
     "pages/welcome/main",
     "pages/login/main",
 
-    "pages/teacher/main",
+    "pages/teacher/teacher-main/main",
 
-    "pages/student/main"
+    "pages/student/student-main/main"
   ],
 
   "window": {

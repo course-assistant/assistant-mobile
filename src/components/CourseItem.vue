@@ -1,5 +1,5 @@
 <template>
-  <div class="course-item" @click="jumpToCourseDetail">
+  <div class="course-item" @click="jump">
     <img class="cover" :src="course.course_cover" alt="" />
 
     <div class="desc">
@@ -19,8 +19,8 @@ export default {
   props: ['course'],
 
   methods: {
-    jumpToCourseDetail() {
-      console.log('跳转至：' + this.course.course_id);
+    jump() {
+      this.$emit('jump', this.course.course_id);
     }
   },
 

@@ -15,6 +15,7 @@ fly.config.timeout = 30000;
 
 //设置请求基地址
 fly.config.baseURL = "http://127.0.0.1:8686/"
+// fly.config.baseURL = "http://123.56.156.212:8686/"
 
 
 MyHttp.install = (Vue) => {

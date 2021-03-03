@@ -14,6 +14,8 @@
       <van-tabbar-item icon="orders-o">课程</van-tabbar-item>
       <van-tabbar-item icon="user-o">我</van-tabbar-item>
     </van-tabbar>
+
+    <van-toast id="custom-selector" />
   </div>
 </template>
 

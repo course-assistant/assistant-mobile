@@ -8,25 +8,27 @@
         v-for="(course, index) in courses"
         :key="index"
         :course="course"
+        @jump="jump"
       />
     </div>
   </div>
 </template>
 
 <script>
-import CourseItem from '../../../components/CourseItem.vue';
+import Toast from '../../../../../static/vant/toast/toast.js';
+import CourseItem from '../../../../components/CourseItem.vue';
 
 export default {
 
   data() {
     return {
       courses: [
-        {
-          course_id: 0,
-          teacher_name: '教师名',
-          course_cover: 'https://cn.vuejs.org/images/logo.png',
-          course_name: "课程名"
-        }
+        // {
+        //   course_id: 0,
+        //   teacher_name: '教师名',
+        //   course_cover: 'https://cn.vuejs.org/images/logo.png',
+        //   course_name: "课程名"
+        // }
       ]
     }
   },
@@ -34,14 +36,27 @@ export default {
   components: { CourseItem },
 
   methods: {
-
     // 点击搜索
     onSearch(event) {
       let word = event.mp.detail;
     },
+
+    // 跳转到教师的课程详情
+    jump(id) {
+      console.log(id);
+    },
   },
 
-  async beforeMount() {
+  async mounted() {
+
+    // 显示加载框
+    let toast = Toast.loading({
+      duration: 0,
+      forbidClick: true,
+      message: '刷新中...',
+      selector: '#custom-selector',
+    });
+
     let [data, err] = await this.$awaitWrap(this.$get('course/findbyteacherid', {
       id: wx.getStorageSync('hncj_assistant_wx_user_id'),
       page: 0,
@@ -52,6 +67,7 @@ export default {
     console.log(data);
     this.courses = data.data;
 
+    toast.clear();
   },
 }
 </script>
