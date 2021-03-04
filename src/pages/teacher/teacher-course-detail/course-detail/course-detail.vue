@@ -8,12 +8,12 @@
       swipeable
       sticky
     >
-      <van-tab title="学时">
+      <van-tab title="学时任务">
         <Period :course_id="course_data.course_id" ref="period" />
       </van-tab>
 
-      <van-tab title="讨论">
-        <Discussion />
+      <van-tab title="周任务">
+        <WeekMission :course_id="course_data.course_id" ref="weekMission" />
       </van-tab>
 
       <van-tab title="更多">
@@ -27,7 +27,7 @@
 
 <script>
 import Period from './view/period-teacher.vue';
-import Discussion from './view/discussion-teacher';
+import WeekMission from './view/week-mission-teacher';
 import CourseMore from './view/course-more-teacher';
 
 export default {
@@ -45,7 +45,7 @@ export default {
 
   components: {
     Period,
-    Discussion,
+    WeekMission,
     CourseMore
   },
 
@@ -70,6 +70,7 @@ export default {
 
     // 刷新子组件
     this.$refs.period.refresh();
+    this.$refs.weekMission.refresh();
   },
 
   onLoad(option) {
@@ -84,5 +85,7 @@ export default {
 .teacher-course-detail {
   height: 100%;
   background: #fff;
+
+  background: #f5f6f8;
 }
 </style>

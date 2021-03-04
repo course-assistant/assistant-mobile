@@ -45,6 +45,8 @@ export default {
     // 刷新页面的数据，给父组件调用
     async refresh() {
       // 获取数据
+      console.log('刷新子组件');
+
       let toast = Toast.loading({
         duration: 0,
         forbidClick: true,
@@ -61,6 +63,7 @@ export default {
 
       // 关闭所有展开的菜单
       this.activeNames = [];
+
       toast.clear()
     },
 
@@ -73,13 +76,12 @@ export default {
       this.activeNames = event.mp.detail;
     },
   },
+
 }
 </script>
 
 <style lang="scss" scoped>
 .period-teacher {
-  background: #f5f6f8;
-
   .period-item {
     height: 80rpx;
     display: flex;
