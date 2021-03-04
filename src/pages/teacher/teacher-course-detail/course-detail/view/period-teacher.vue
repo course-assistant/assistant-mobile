@@ -69,6 +69,9 @@ export default {
 
     toPeriodDetail(id) {
       console.log('to period ' + id);
+      wx.navigateTo({
+        url: `/pages/teacher/teacher-course-detail/period-detail/main?period_id=${id}`
+      });
     },
 
     // 折叠框展开、折叠

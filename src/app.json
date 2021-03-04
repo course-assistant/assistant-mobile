@@ -5,6 +5,7 @@
 
     "pages/teacher/teacher-main/main",
     "pages/teacher/teacher-course-detail/course-detail/main",
+    "pages/teacher/teacher-course-detail/period-detail/main",
 
     "pages/student/student-main/main"
   ],

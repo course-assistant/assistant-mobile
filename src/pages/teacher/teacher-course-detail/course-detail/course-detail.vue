@@ -84,7 +84,6 @@ export default {
 <style lang="scss" scoped>
 .teacher-course-detail {
   height: 100%;
-  background: #fff;
 
   background: #f5f6f8;
 }
