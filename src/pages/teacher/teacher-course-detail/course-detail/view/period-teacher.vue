@@ -1,65 +1,110 @@
 <template>
   <div class="period-teacher">
-    <div>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-      <p>period</p>
-    </div>
+    <van-collapse :value="activeNames" @change="onChange">
+      <!-- 折叠菜单 -->
+      <van-collapse-item
+        v-for="(week, week_i) in week_period"
+        :key="week_i"
+        :title="week.week_name"
+        :name="week.week_id"
+        style="margin: 10px"
+      >
+        <!-- 菜单项 -->
+        <div
+          class="period-item"
+          v-for="(period, period_i) in week.periods"
+          :key="period_i"
+          @click="toPeriodDetail(period.period_id)"
+        >
+          <p class="period-name">{{ period.period_name }}</p>
+          <p class="period-type" v-if="period.period_type == 1">理论课</p>
+          <p class="period-type" v-if="period.period_type == 2">实验课</p>
+        </div>
+      </van-collapse-item>
+    </van-collapse>
   </div>
 </template>
 
 <script>
+import Toast from '../../../../../../static/vant/toast/toast.js';
+
 export default {
-  beforeMount() {
-    console.log('mount period');
+
+  data() {
+    return {
+      activeNames: ["1"],
+      week_period: [{
+        week_id: 0,
+      }]
+    }
   },
+
+  props: ['course_id'],
+
+  methods: {
+    // 刷新页面的数据，给父组件调用
+    async refresh() {
+      console.log(this.course_id);
+
+      let toast = Toast.loading({
+        duration: 0,
+        forbidClick: true,
+        message: '刷新中...',
+        selector: '#custom-selector',
+      });
+
+      // 获取数据
+      let [data, err] = await this.$awaitWrap(this.$get('weekperiod/select', {
+        id: this.course_id
+      }));
+      console.log('获取周和学时');
+      console.log(data);
+
+      this.week_period = data.data;
+
+      toast.clear()
+    },
+
+    toPeriodDetail(id) {
+      console.log('to period ' + id);
+    },
+
+    // 折叠框展开、折叠
+    onChange(event) {
+      this.activeNames = event.mp.detail;
+    },
+  },
+
+
+  // beforeMount() {
+  //   console.log('mounted period');
+  //   this.refresh();
+  // },
 }
 </script>
 
 <style lang="scss" scoped>
 .period-teacher {
+  background: #f5f6f8;
+
+  .period-item {
+    height: 80rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background: palegoldenrod;
+    border-bottom: solid 1px #f5f6f7;
+    color: #000;
+    // background: #eeeff3;
+
+    .period-name {
+      height: 80rpx;
+      line-height: 80rpx;
+    }
+    .period-type {
+      height: 80rpx;
+      line-height: 80rpx;
+    }
+  }
 }
 </style>
