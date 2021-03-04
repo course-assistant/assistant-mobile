@@ -51,9 +51,6 @@ export default {
 
   methods: {
     onTabChange(event) {
-      console.log(event);
-
-
     }
   },
 

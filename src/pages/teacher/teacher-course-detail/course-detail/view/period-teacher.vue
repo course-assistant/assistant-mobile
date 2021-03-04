@@ -44,8 +44,7 @@ export default {
   methods: {
     // 刷新页面的数据，给父组件调用
     async refresh() {
-      console.log(this.course_id);
-
+      // 获取数据
       let toast = Toast.loading({
         duration: 0,
         forbidClick: true,
@@ -53,15 +52,15 @@ export default {
         selector: '#custom-selector',
       });
 
-      // 获取数据
       let [data, err] = await this.$awaitWrap(this.$get('weekperiod/select', {
         id: this.course_id
       }));
       console.log('获取周和学时');
       console.log(data);
-
       this.week_period = data.data;
 
+      // 关闭所有展开的菜单
+      this.activeNames = [];
       toast.clear()
     },
 
@@ -74,12 +73,6 @@ export default {
       this.activeNames = event.mp.detail;
     },
   },
-
-
-  // beforeMount() {
-  //   console.log('mounted period');
-  //   this.refresh();
-  // },
 }
 </script>
 
@@ -93,6 +86,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     // background: palegoldenrod;
+    border-top: solid 1px #f5f6f7;
     border-bottom: solid 1px #f5f6f7;
     color: #000;
     // background: #eeeff3;
