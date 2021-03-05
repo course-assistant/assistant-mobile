@@ -6,6 +6,7 @@
     "pages/teacher/teacher-main/main",
     "pages/teacher/teacher-course-detail/course-detail/main",
     "pages/teacher/teacher-course-detail/period-detail/main",
+    "pages/teacher/teacher-course-detail/weekmission-detail/main",
 
     "pages/student/student-main/main"
   ],
@@ -36,6 +37,7 @@
     "van-tabs": "/static/vant/tabs/index",
 
     "van-collapse": "/static/vant/collapse/index",
-    "van-collapse-item": "/static/vant/collapse-item/index"
+    "van-collapse-item": "/static/vant/collapse-item/index",
+    "van-image": "/static/vant/image/index"
   }
 }

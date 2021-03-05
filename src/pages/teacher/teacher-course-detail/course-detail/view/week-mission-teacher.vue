@@ -39,7 +39,9 @@ export default {
 
     // 跳转到周任务详情
     toWeekMissionDetail(id) {
-      console.log('to week mission ' + id);
+      wx.navigateTo({
+        url: `/pages/teacher/teacher-course-detail/weekmission-detail/main?week_mission_id=${id}`
+      });
     }
   },
 
