@@ -91,7 +91,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     // background: palegoldenrod;
-    border-top: solid 1px #f5f6f7;
+    // border-top: solid 1px #f5f6f7;
     border-bottom: solid 1px #f5f6f7;
     color: #000;
     // background: #eeeff3;

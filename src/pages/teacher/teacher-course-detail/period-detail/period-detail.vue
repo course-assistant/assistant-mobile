@@ -18,14 +18,16 @@
             <p class="test-name">第01次测试</p>
             <p class="test-status">未发布</p>
           </div>
-          <!-- <div class="test-item"></div>
-          <div class="test-item"></div>
-          <div class="test-item"></div> -->
         </div>
       </van-tab>
 
       <van-tab title="课堂讨论">
-        <div class="discussions">所有讨论</div>
+        <div class="discussions">
+          <div class="discussion-item">
+            <van-tag plain type="primary" style="margin: 0 20rpx">讨论</van-tag>
+            <span>什么是HTML</span>
+          </div>
+        </div>
       </van-tab>
     </van-tabs>
   </div>
@@ -107,12 +109,20 @@ export default {
         margin: 0 20rpx;
         border-radius: 10rpx;
       }
-      
+
       .test-status {
         position: absolute;
         right: 40rpx;
       }
-      // background: palevioletred ;
+    }
+  }
+
+  .discussions {
+    .discussion-item {
+      height: 90rpx;
+      border-bottom: solid 1px #f2f2f2;
+      display: flex;
+      align-items: center;
     }
   }
 }
