@@ -90,6 +90,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    // background: #f5f6f8;
     // background: palegoldenrod;
     // border-top: solid 1px #f5f6f7;
     border-bottom: solid 1px #f5f6f7;

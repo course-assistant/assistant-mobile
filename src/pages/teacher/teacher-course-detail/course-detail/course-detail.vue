@@ -17,7 +17,7 @@
       </van-tab>
 
       <van-tab title="更多">
-        <CourseMore />
+        <CourseMore :course_id="course_data.course_id" />
       </van-tab>
     </van-tabs>
 

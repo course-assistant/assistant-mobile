@@ -1,57 +1,40 @@
 <template>
   <div class="course-more-teacher">
-    <div>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-      <p>course-more-teacher</p>
-    </div>
+    <van-cell title="班级" icon="orders-o" is-link @click="toCourseClass" />
+    <van-cell
+      title="统计"
+      icon="bar-chart-o"
+      is-link
+      @click="toCourseStatistics"
+    />
+    <van-cell
+      title="管理课程"
+      icon="contact"
+      is-link
+      @click="toCourseSetting"
+    />
   </div>
 </template>
 
 <script>
 export default {
+
+  props: ['course_id'],
+
+  methods: {
+    toCourseClass() {
+      
+    },
+
+    toCourseStatistics() {
+      
+    },
+
+    toCourseSetting() {
+      
+    },
+  },
+
   beforeMount() {
     console.log('mount more');
   },
@@ -60,5 +43,6 @@ export default {
 
 <style lang="scss" scoped>
 .course-more-teacher {
+  padding: 20rpx 0;
 }
 </style>

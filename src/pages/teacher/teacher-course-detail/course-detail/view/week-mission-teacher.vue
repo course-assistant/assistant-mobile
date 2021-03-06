@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 .week-mission-teacher {
-  height: 100%;
+  background: #f5f6f8;
   padding: 10px 0;
 
   .week-mission-item {
