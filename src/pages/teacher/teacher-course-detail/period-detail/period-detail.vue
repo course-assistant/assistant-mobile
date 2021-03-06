@@ -3,29 +3,40 @@
     <van-tabs :active="active" color="#4396f7" animated swipeable sticky>
       <van-tab title="任务">
         <div class="mission">
-          <p>任务详情</p>
+          <p>{{ period.period_name }}</p>
           <p>{{ period.period_content }}</p>
         </div>
       </van-tab>
 
       <van-tab title="随堂测试">
         <div class="tests">
-          <div class="test-item">
+          <div
+            class="test-item"
+            v-for="(test, index) in periodtests"
+            :key="index"
+          >
             <img
               src="https://mooc1-api.chaoxing.com/images/work/phone/task-work-gray.png"
               alt=""
             />
-            <p class="test-name">第01次测试</p>
-            <p class="test-status">未发布</p>
+            <p class="test-name">{{ test.period_test_name }}</p>
+            <p v-if="test.period_test_status == 1" class="test-status">
+              未发布
+            </p>
+            <p v-else class="test-status">已发布</p>
           </div>
         </div>
       </van-tab>
 
       <van-tab title="课堂讨论">
         <div class="discussions">
-          <div class="discussion-item">
+          <div
+            class="discussion-item"
+            v-for="(discussion, index) in discussions"
+            :key="index"
+          >
             <van-tag plain type="primary" style="margin: 0 20rpx">讨论</van-tag>
-            <span>什么是HTML</span>
+            <span>{{ discussion.discussion_title }}</span>
           </div>
         </div>
       </van-tab>
@@ -44,7 +55,11 @@ export default {
 
       period: {
         period_id: 0
-      }
+      },
+
+      periodtests: [],
+
+      discussions: []
 
     }
   },
@@ -62,20 +77,22 @@ export default {
     wx.setNavigationBarTitle({
       title: data.data.period_name
     })
-    console.log(err);
-
-    console.log(22);
 
     // 获取随堂测试
-
-
+    let [testData, testErr] = await this.$awaitWrap(this.$get('periodtest/selecttestbyperiodid', {
+      id: this.period.period_id
+    }));
+    console.log('获取随堂测试');
+    console.log(testData);
+    this.periodtests = testData.data;
 
     // 获取课堂讨论
-    [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectdissbyperiodid', {
+    let [discussionData, discussionErr] = await this.$awaitWrap(this.$get('discussioncomment/selectdissbyperiodid', {
       id: this.period.period_id
     }));
     console.log('获取课堂讨论');
-    console.log(data);
+    console.log(discussionData);
+    this.discussions = discussionData.data;
   },
 
   onLoad(option) {
@@ -93,6 +110,7 @@ export default {
 
   .mission {
     height: 100%;
+    padding: 20rpx;
   }
 
   .tests {
