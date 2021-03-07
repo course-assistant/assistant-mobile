@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1696640",
+      "name": "更多",
+      "font_class": "-more",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "3176645",
+      "name": "GitHub",
+      "font_class": "-github",
+      "unicode": "ea0a",
+      "unicode_decimal": 59914
+    },
+    {
+      "icon_id": "7817407",
+      "name": "意见反馈",
+      "font_class": "-feedback",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "11935681",
+      "name": "bug",
+      "font_class": "-bug",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "12095313",
+      "name": "随机",
+      "font_class": "-random",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "925496",
+      "name": "图书",
+      "font_class": "-book",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "3100164",
+      "name": "报纸",
+      "font_class": "-newspaper",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "20225712",
+      "name": "课程",
+      "font_class": "-course",
+      "unicode": "e6d8",
+      "unicode_decimal": 59096
+    },
+    {
+      "icon_id": "7450640",
+      "name": "视频",
+      "font_class": "-video",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
       "icon_id": "17883303",
       "name": "QQ",
       "font_class": "-qq",
