@@ -23,15 +23,15 @@ export default {
 
   methods: {
     toCourseClass() {
-      
+
     },
 
     toCourseStatistics() {
-      
+
     },
 
     toCourseSetting() {
-      
+
     },
   },
 

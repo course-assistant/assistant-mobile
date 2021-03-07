@@ -20,7 +20,11 @@
               alt=""
             />
             <p class="test-name">{{ test.period_test_name }}</p>
-            <p v-if="test.period_test_status == 1" class="test-status">
+            <p
+              v-if="test.period_test_status == 2"
+              class="test-status"
+              @click="issueTest(test.period_test_id)"
+            >
               未发布
             </p>
             <p v-else class="test-status">已发布</p>
@@ -41,11 +45,14 @@
         </div>
       </van-tab>
     </van-tabs>
+
+    <!-- 对话框 -->
+    <van-dialog id="van-dialog" />
   </div>
 </template>
 
 <script>
-
+import Dialog from '../../../../../static/vant/dialog/dialog';
 
 export default {
 
@@ -60,7 +67,53 @@ export default {
       periodtests: [],
 
       discussions: []
+    }
+  },
 
+  methods: {
+    // 刷新随堂测试
+    async refreshTests() {
+      // 获取随堂测试
+      let [testData, testErr] = await this.$awaitWrap(this.$get('periodtest/selecttestbyperiodid', {
+        id: this.period.period_id
+      }));
+      console.log('获取随堂测试');
+      console.log(testData);
+      this.periodtests = testData.data;
+    },
+
+    // 刷新课堂讨论
+    async refreshDiscussions() {
+      // 获取课堂讨论
+      let [discussionData, discussionErr] = await this.$awaitWrap(this.$get('discussioncomment/selectdissbyperiodid', {
+        id: this.period.period_id
+      }));
+      console.log('获取课堂讨论');
+      console.log(discussionData);
+      this.discussions = discussionData.data;
+    },
+
+    // 点击发布随堂测试
+    issueTest(test_id) {
+      console.log(test_id);
+      Dialog.confirm({
+        title: '提示',
+        message: '确定发布该测试',
+      }).then(async () => {
+        console.log('发布');
+        let [data, err] = await this.$awaitWrap(this.$post('periodtest/issue', {
+          id: test_id
+        }));
+        // 刷新
+        wx.showLoading({
+          title: '刷新...',
+          mask: true,
+        });
+        this.refreshTests();
+        wx.hideLoading();
+      }).catch(() => {
+        // 操作取消
+      });
     }
   },
 
@@ -78,21 +131,15 @@ export default {
       title: data.data.period_name
     })
 
-    // 获取随堂测试
-    let [testData, testErr] = await this.$awaitWrap(this.$get('periodtest/selecttestbyperiodid', {
-      id: this.period.period_id
-    }));
-    console.log('获取随堂测试');
-    console.log(testData);
-    this.periodtests = testData.data;
-
-    // 获取课堂讨论
-    let [discussionData, discussionErr] = await this.$awaitWrap(this.$get('discussioncomment/selectdissbyperiodid', {
-      id: this.period.period_id
-    }));
-    console.log('获取课堂讨论');
-    console.log(discussionData);
-    this.discussions = discussionData.data;
+    wx.showLoading({
+      title: '刷新...',
+      mask: true,
+    });
+    // 刷新随堂测试
+    await this.refreshTests();
+    // 刷新课堂讨论
+    await this.refreshDiscussions();
+    wx.hideLoading()
   },
 
   onLoad(option) {
