@@ -51,6 +51,11 @@ export default {
     }
   },
 
+  beforeMount() {
+    // 在进入此页面时，显示第0页
+    this.active = 0;
+  },
+
 }
 </script>
 
