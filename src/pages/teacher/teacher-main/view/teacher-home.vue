@@ -1,6 +1,7 @@
 <template>
   <div class="teacher-home">
     <van-button type="primary" @click="handleLogout">退出登录</van-button>
+    <button type="primary" open-type="feedback">反馈</button>
   </div>
 </template>
 
@@ -10,7 +11,7 @@ export default {
     // 点击退出登录
     handleLogout() {
       // 清除所有缓存
-      
+
 
       // 重定向到登录页面
       wx.redirectTo({ url: '/pages/login/main' });

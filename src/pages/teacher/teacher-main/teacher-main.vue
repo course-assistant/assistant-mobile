@@ -1,7 +1,7 @@
 <template>
   <div class="teacher">
     <div class="content">
-      <TeacherIndex v-if="active == 0" />
+      <TeacherIndex v-if="active == 0" @switchTab="switchTab" />
 
       <TeacherCourse v-if="active == 1" />
 
@@ -42,6 +42,12 @@ export default {
     // 点击下面的tabbar时
     onTabbarChange(event) {
       this.active = event.mp.detail;
+    },
+
+
+    // 给子组件调用，用来切换tab
+    switchTab(index) {
+      this.active = index;
     }
   },
 

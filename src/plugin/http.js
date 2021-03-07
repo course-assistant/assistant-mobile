@@ -72,6 +72,16 @@ MyHttp.install = (Vue) => {
       .catch(err => [null, err]);
   }
 
+
+  // 错误处理
+  Vue.prototype.$catch = (err) => {
+    wx.showToast({
+      title: err,
+      icon: 'error',
+      duration: 3000,
+      mask: true
+    });
+  }
 };
 
 export default MyHttp

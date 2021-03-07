@@ -9,7 +9,7 @@
     <div class="app">
       <div class="app-title"><p>教学</p></div>
       <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="switchTab">
           <i
             class="iconfont icon-course"
             style="color: #08aeab"
@@ -24,7 +24,7 @@
     <div class="app">
       <div class="app-title"><p>服务</p></div>
       <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i
             class="iconfont icon-video"
             style="color: #4e8df6"
@@ -33,7 +33,7 @@
           <p class="name">视频</p>
         </van-grid-item>
 
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i
             class="iconfont icon-book"
             style="color: #4e8df6"
@@ -42,7 +42,7 @@
           <p class="name">图书</p>
         </van-grid-item>
 
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i
             class="iconfont icon-newspaper"
             style="color: #83c1ff"
@@ -57,7 +57,7 @@
     <div class="app">
       <div class="app-title"><p>工具</p></div>
       <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i
             class="iconfont icon-random"
             style="color: #0590df"
@@ -66,7 +66,7 @@
           <p class="name">随机点名</p>
         </van-grid-item>
 
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i
             class="iconfont icon-more"
             style="color: #93a2f9"
@@ -90,7 +90,7 @@
           <p class="name">意见反馈</p>
         </van-grid-item>
 
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i
             class="iconfont icon-bug"
             style="color: #36cfc9"
@@ -99,7 +99,7 @@
           <p class="name">Bug反馈</p>
         </van-grid-item>
 
-        <van-grid-item class="app-item" use-slot>
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i
             class="iconfont icon-github"
             style="color: #191717"
@@ -114,7 +114,18 @@
 
 <script>
 export default {
+  methods: {
 
+    // 切换页面
+    switchTab() {
+      this.$emit('switchTab', 1);
+    },
+
+    // 提示功能还不可用
+    notNow() {
+      this.$toast('此功能目前在实验阶段，暂时不可用');
+    }
+  },
 }
 </script>
 
