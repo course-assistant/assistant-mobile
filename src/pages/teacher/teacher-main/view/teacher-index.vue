@@ -10,11 +10,7 @@
       <div class="app-title"><p>教学</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="switchTab">
-          <i
-            class="iconfont icon-course"
-            style="color: #08aeab"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-course" style="color: #08aeab"></i>
           <p class="name">我的课程</p>
         </van-grid-item>
       </van-grid>
@@ -25,29 +21,17 @@
       <div class="app-title"><p>服务</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i
-            class="iconfont icon-video"
-            style="color: #4e8df6"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-video" style="color: #4e8df6"></i>
           <p class="name">视频</p>
         </van-grid-item>
 
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i
-            class="iconfont icon-book"
-            style="color: #4e8df6"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-book" style="color: #4e8df6"></i>
           <p class="name">图书</p>
         </van-grid-item>
 
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i
-            class="iconfont icon-newspaper"
-            style="color: #83c1ff"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-newspaper" style="color: #83c1ff"></i>
           <p class="name">报纸</p>
         </van-grid-item>
       </van-grid>
@@ -58,20 +42,12 @@
       <div class="app-title"><p>工具</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i
-            class="iconfont icon-random"
-            style="color: #0590df"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-random" style="color: #0590df"></i>
           <p class="name">随机点名</p>
         </van-grid-item>
 
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i
-            class="iconfont icon-more"
-            style="color: #93a2f9"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-more" style="color: #93a2f9"></i>
           <p class="name">更多工具</p>
         </van-grid-item>
       </van-grid>
@@ -82,31 +58,19 @@
       <div class="app-title"><p>反馈</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot>
-          <i
-            class="iconfont icon-feedback"
-            style="color: #36a99e"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-feedback" style="color: #36a99e"></i>
           <p class="name">意见反馈</p>
         </van-grid-item>
 
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i
-            class="iconfont icon-bug"
-            style="color: #36cfc9"
-            @click="handleOtherLogin"
-          ></i>
+          <i class="iconfont icon-bug" style="color: #36cfc9"></i>
           <p class="name">Bug反馈</p>
         </van-grid-item>
 
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i
-            class="iconfont icon-github"
-            style="color: #191717"
-            @click="handleOtherLogin"
-          ></i>
+        <!-- <van-grid-item class="app-item" use-slot @click="notNow">
+          <i class="iconfont icon-github" style="color: #191717"></i>
           <p class="name">开源地址</p>
-        </van-grid-item>
+        </van-grid-item> -->
       </van-grid>
     </div>
   </div>
