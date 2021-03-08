@@ -7,7 +7,7 @@
     <div class="margin"></div>
 
     <MyCell text="我的课程" @click="jump" />
-    <MyCell text="添加课程" @click="selectCourseShow = true" />
+    <MyCell text="加入课程" @click="selectCourseShow = true" />
     <MyCell text="账号管理" @click="jump" />
     <div class="margin"></div>
 

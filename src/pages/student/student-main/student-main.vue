@@ -3,12 +3,15 @@
     <div class="content">
       <StudentIndex v-if="active == 0" />
 
-      <StudentHome v-if="active == 1" />
+      <StudentCourse v-if="active == 1" />
+
+      <StudentHome v-if="active == 2" />
     </div>
 
     <!-- tabbar -->
     <van-tabbar :active="active" @change="onTabbarChange">
       <van-tabbar-item icon="home-o">首页</van-tabbar-item>
+      <van-tabbar-item icon="orders-o">课程</van-tabbar-item>
       <van-tabbar-item icon="user-o">我</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -16,6 +19,7 @@
 
 <script>
 import StudentIndex from './view/student-index.vue';
+import StudentCourse from './view/student-course.vue';
 import StudentHome from './view/student-home.vue';
 
 export default {
@@ -27,6 +31,7 @@ export default {
 
   components: {
     StudentIndex,
+    StudentCourse,
     StudentHome
   },
 
