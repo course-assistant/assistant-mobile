@@ -40,16 +40,13 @@ export default {
   },
 
   async beforeMount() {
-    wx.showLoading({
-      title: 'Loading...',
-      mask: true,
-    });
+    this.$loading();
 
     console.log('b m');
 
     setTimeout(() => {
       wx.hideLoading();
-    }, 2000);
+    }, 1000);
   },
 
 }

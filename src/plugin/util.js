@@ -21,6 +21,18 @@ MyUtil.install = (Vue) => {
   }
 
 
+  // loading
+  Vue.prototype.$loading = (msg) => {
+    if (!msg) {
+      msg = 'Loading...';
+    }
+    wx.showLoading({
+      title: msg,
+      mask: true,
+    });
+  }
+
+
   // 扫码
   Vue.prototype.$scanQR = () => {
     return new Promise((resolve, reject) => {
@@ -35,7 +47,7 @@ MyUtil.install = (Vue) => {
       });
     });
   }
-  
+
 
   // 退出登录
   Vue.prototype.$logout = () => {
