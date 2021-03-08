@@ -21,12 +21,12 @@ export default {
   data() {
     return {
       courses: [
-        {
-          course_id: 0,
-          teacher_name: '教师名',
-          course_cover: 'https://cn.vuejs.org/images/logo.png',
-          course_name: "课程名"
-        }
+        // {
+        //   course_id: 0,
+        //   teacher_name: '教师名',
+        //   course_cover: 'https://cn.vuejs.org/images/logo.png',
+        //   course_name: "课程名"
+        // }
       ]
     }
   },
@@ -41,12 +41,19 @@ export default {
 
   async beforeMount() {
     this.$loading();
-
-    console.log('b m');
-
-    setTimeout(() => {
-      wx.hideLoading();
-    }, 1000);
+    // 加载学生的课程
+    let [data, err] = await this.$awaitWrap(this.$get('course/findbystudentid', {
+      id: wx.getStorageSync('hncj_assistant_wx_user_id'),
+      page: 0,
+      size: 1000,
+      status: 1
+    }));
+    if (err) {
+      this.$catch(err);
+      return;
+    }
+    this.courses = data.data;
+    wx.hideLoading();
   },
 
 }
