@@ -53,7 +53,7 @@
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
           <i class="iconfont icon-random" style="color: #0590df"></i>
-          <p class="name">随机点名</p>
+          <p class="name">成绩查询</p>
         </van-grid-item>
 
         <van-grid-item class="app-item" use-slot @click="notNow">

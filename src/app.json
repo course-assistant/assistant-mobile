@@ -42,6 +42,7 @@
     "van-cell-group": "/static/vant/cell-group/index",
     "van-dialog": "/static/vant/dialog/index",
     "van-grid": "/static/vant/grid/index",
-    "van-grid-item": "/static/vant/grid-item/index"
+    "van-grid-item": "/static/vant/grid-item/index",
+    "van-action-sheet": "/static/vant/action-sheet/index"
   }
 }

@@ -6,6 +6,10 @@ const MyUtil = {};
 
 MyUtil.install = (Vue) => {
 
+  Vue.prototype.$$$$$ = () => {
+
+  }
+
   // toast
   Vue.prototype.$toast = (msg) => {
     wx.showToast({
@@ -15,6 +19,23 @@ MyUtil.install = (Vue) => {
       mask: true
     });
   }
+
+
+  // 扫码
+  Vue.prototype.$scanQR = () => {
+    return new Promise((resolve, reject) => {
+      wx.scanCode({
+        onlyFromCamera: false,
+        success(res) {
+          resolve(res);
+        },
+        fail(err) {
+          reject('扫描失败');
+        }
+      });
+    });
+  }
+  
 
   // 退出登录
   Vue.prototype.$logout = () => {

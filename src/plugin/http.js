@@ -77,7 +77,7 @@ MyHttp.install = (Vue) => {
   Vue.prototype.$catch = (err) => {
     wx.showToast({
       title: err,
-      icon: 'error',
+      icon: 'none',
       duration: 3000,
       mask: true
     });
