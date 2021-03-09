@@ -1,13 +1,11 @@
 <script>
-
-
 export default {
 
 }
 </script>
 
 <style lang="scss">
-@import './common/iconfont/iconfont.css';
+@import "./static/iconfont.css";
 
 page {
   width: 100%;
@@ -18,6 +16,4 @@ page {
   width: 100%;
   height: 100%;
 }
-
-
 </style>

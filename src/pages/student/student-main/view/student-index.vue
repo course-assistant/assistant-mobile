@@ -26,7 +26,7 @@
       <div class="app-title"><p>教学服务</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-video" style="color: #4e8df6"></i>
+          <i class="iconfont icon-app" style="color: #4e8df6"></i>
           <p class="name">四六级</p>
         </van-grid-item>
 
