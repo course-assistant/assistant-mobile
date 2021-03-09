@@ -35,7 +35,9 @@ export default {
 
   methods: {
     jump(course_id) {
-      console.log(course_id);
+      wx.navigateTo({
+        url: `/pages/student/student-course-detail/course-detail/main?course_id=${course_id}`
+      });
     }
   },
 

@@ -43,6 +43,10 @@ export default {
     }
   },
 
+  beforeMount() {
+    this.active = 0;
+  },
+
 }
 </script>
 
