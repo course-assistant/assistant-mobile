@@ -1,5 +1,5 @@
 /**
- * 把微信的toast封装成插件
+ * 把常用函数封装为插件
  */
 
 const MyUtil = {};
@@ -9,6 +9,25 @@ MyUtil.install = (Vue) => {
   Vue.prototype.$$$$$ = () => {
 
   }
+
+  // async/await 结果处理
+  Vue.prototype.$awaitWrap = (promise) => {
+    return promise
+      .then(data => [data, null])
+      .catch(err => [null, err]);
+  }
+
+
+  // 自定义错误处理
+  Vue.prototype.$catch = (err) => {
+    wx.showToast({
+      title: err,
+      icon: 'none',
+      duration: 3000,
+      mask: true
+    });
+  }
+  
 
   // toast
   Vue.prototype.$toast = (msg) => {

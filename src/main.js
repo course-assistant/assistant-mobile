@@ -7,7 +7,6 @@ import MyUtil from './plugin/util.js';
 Vue.config.productionTip = false
 App.mpType = 'app'
 
-// Vue.prototype.$get = flyHttp.get;
 Vue.use(MyHttp);
 Vue.use(MyUtil);
 

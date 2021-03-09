@@ -3,32 +3,27 @@ import qs from 'qs';
 
 
 const fly = new Fly;
-
 const MyHttp = {};
-
-// fly.config.headers = {
-//   token: wx.getStorageSync('hncj_assistant_wx_user_token'),
-// }
 
 //设置超时
 fly.config.timeout = 30000;
 
 //设置请求基地址
-// fly.config.baseURL = "http://127.0.0.1:8686/"
-fly.config.baseURL = "https://tanyiqu.top:8686/"
+fly.config.baseURL = "http://127.0.0.1:8686/"
+// fly.config.baseURL = "https://tanyiqu.top:8686/"
 
 
 MyHttp.install = (Vue) => {
 
+  // 封装get请求
   Vue.prototype.$get = (path, params) => {
-
     // 获取token
     let token = wx.getStorageSync('hncj_assistant_wx_user_token');
-
+    // 设置headers，每次请求获取一次
     fly.config.headers = {
       token: token
     }
-
+    // 发送请求
     return new Promise((resolve, reject) => {
       fly.get(path, params).then(res => {
         if (res.data.code === 200) {
@@ -43,14 +38,15 @@ MyHttp.install = (Vue) => {
   }
 
 
+  // 封装post请求
   Vue.prototype.$post = (path, params) => {
     // 获取token
     let token = wx.getStorageSync('hncj_assistant_wx_user_token');
-
+    // 设置headers，每次请求获取一次
     fly.config.headers = {
       token: token
     }
-
+    // 发送请求
     return new Promise((resolve, reject) => {
       fly.post(path, qs.stringify(params)).then(res => {
         if (res.data.code === 200) {
@@ -61,25 +57,6 @@ MyHttp.install = (Vue) => {
       }).catch(err => {
         reject('服务器异常');
       });
-    });
-  }
-
-
-  // async/await 错误处理
-  Vue.prototype.$awaitWrap = (promise) => {
-    return promise
-      .then(data => [data, null])
-      .catch(err => [null, err]);
-  }
-
-
-  // 错误处理
-  Vue.prototype.$catch = (err) => {
-    wx.showToast({
-      title: err,
-      icon: 'none',
-      duration: 3000,
-      mask: true
     });
   }
 };
