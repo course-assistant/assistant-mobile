@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import Toast from '../../../../../static/vant/toast/toast.js';
 import CourseItem from '../../../../components/CourseItem.vue';
 
 export default {
@@ -50,14 +49,7 @@ export default {
   },
 
   async mounted() {
-
-    // 显示加载框
-    let toast = Toast.loading({
-      duration: 0,
-      forbidClick: true,
-      message: '刷新中...',
-      selector: '#custom-selector',
-    });
+    this.$loading('刷新中...');
 
     let [data, err] = await this.$awaitWrap(this.$get('course/findbyteacherid', {
       id: wx.getStorageSync('hncj_assistant_wx_user_id'),
@@ -68,8 +60,7 @@ export default {
 
     console.log(data);
     this.courses = data.data;
-
-    toast.clear();
+    wx.hideLoading();
   },
 }
 </script>

@@ -26,8 +26,6 @@
 </template>
 
 <script>
-import Toast from '../../../../../../static/vant/toast/toast.js';
-
 export default {
 
   data() {
@@ -46,13 +44,7 @@ export default {
     async refresh() {
       // 获取数据
       console.log('刷新子组件');
-
-      let toast = Toast.loading({
-        duration: 0,
-        forbidClick: true,
-        message: '刷新中...',
-        selector: '#custom-selector',
-      });
+      this.$loading('刷新中...');
 
       let [data, err] = await this.$awaitWrap(this.$get('weekperiod/select', {
         id: this.course_id
@@ -63,8 +55,7 @@ export default {
 
       // 关闭所有展开的菜单
       this.activeNames = [];
-
-      toast.clear()
+      wx.hideLoading();
     },
 
     toPeriodDetail(id) {

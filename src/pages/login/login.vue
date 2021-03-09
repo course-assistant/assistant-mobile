@@ -52,14 +52,11 @@
       ></i>
     </div>
 
-    <van-toast id="van-toast" />
-    <van-toast id="custom-selector" />
     <van-notify id="van-notify" />
   </div>
 </template>
 
 <script>
-import Toast from '../../../static/vant/toast/toast.js';
 import Notify from '../../../static/vant/notify/notify';
 import MD5 from '../../util/MD5Util.js';
 
@@ -83,12 +80,8 @@ export default {
 
     async handleLogin() {
       // 显示加载框
-      let toast = Toast.loading({
-        duration: 0,
-        forbidClick: true,
-        message: '登录中...',
-        selector: '#custom-selector',
-      });
+      this.$loading('登录中...');
+
       // 判断登录
       let [data, err] = await this.$awaitWrap(this.$post('login', {
         username: this.loginForm.username,
@@ -126,17 +119,19 @@ export default {
         wx.setStorageSync('hncj_assistant_wx_user_avatar', data.data.student_avatar);
       }
       // 清除加载框
-      toast.clear();
-      Notify({ type: 'success', message: data.msg });
+      wx.hideLoading();
 
-      // 根据type跳转到对应页面
-      if (this.loginForm.type === 2) {
-        // 教师
-        wx.redirectTo({ url: '/pages/teacher/teacher-main/main' });
-        return;
-      }
-      // 学生
-      wx.redirectTo({ url: '/pages/student/student-main/main' });
+      Notify({ type: 'success', message: '登录成功' });
+      setTimeout(() => {
+        // 根据type跳转到对应页面
+        if (this.loginForm.type === 2) {
+          // 教师
+          wx.redirectTo({ url: '/pages/teacher/teacher-main/main' });
+          return;
+        }
+        // 学生
+        wx.redirectTo({ url: '/pages/student/student-main/main' });
+      }, 800);
     },
 
 

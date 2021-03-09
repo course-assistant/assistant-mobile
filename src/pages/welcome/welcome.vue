@@ -11,7 +11,7 @@ import Notify from '../../../static/vant/notify/notify';
 
 export default {
   // 在挂载前判断是否登录，没有登录信息就跳转至登录页面
-  beforeMount() {
+  async beforeMount() {
     // 判断授权，跳转至对应页面
     let token = wx.getStorageSync('hncj_assistant_wx_user_token');
     let type = wx.getStorageSync('hncj_assistant_wx_user_type');
@@ -24,23 +24,25 @@ export default {
       return;
     }
     // 有token，进行验证
-    this.$post('authentication', { token, type })
-      .then(res => {
-        // 根据type跳转到对应页面
-        if (type === 2) {
-          // 教师
-          wx.redirectTo({ url: '/pages/teacher/teacher-main/main' });
-          return;
-        }
-        // 学生
-        wx.redirectTo({ url: '/pages/student/student-main/main' });
-      })
-      .catch(err => {
-        Notify({ type: 'danger', message: err });
-        setTimeout(() => {
-          wx.redirectTo({ url: '/pages/login/main' });
-        }, 800);
-      });
+    let [data, err] = await this.$awaitWrap(this.$post('authentication', {
+      token, type
+    }));
+    // 验证失败
+    if (err) {
+      Notify({ type: 'danger', message: err });
+      setTimeout(() => {
+        wx.redirectTo({ url: '/pages/login/main' });
+      }, 800);
+      return;
+    }
+    // 验证成功，根据type跳转到对应页面
+    if (type === 2) {
+      // 到教师页面
+      wx.redirectTo({ url: '/pages/teacher/teacher-main/main' });
+      return;
+    }
+    // 到学生页面
+    wx.redirectTo({ url: '/pages/student/student-main/main' });
   },
 }
 </script>
