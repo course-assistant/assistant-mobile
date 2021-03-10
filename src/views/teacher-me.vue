@@ -6,7 +6,7 @@
     </div>
     <div class="margin"></div>
 
-    <MyCell text="我的课程" @click="jump" />
+    <MyCell text="我的课程" icon="icon-app" color="#93a2f9" @click="jump" />
     <MyCell text="账号管理" @click="jump" />
     <div class="margin"></div>
 

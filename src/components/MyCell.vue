@@ -1,20 +1,24 @@
 <template>
   <div class="my-cell" @click="onClick">
-    <i class="iconfont icon-more" style="color: #93a2f9"></i>
+    <i class="iconfont" :class="icon" :style="{ color }"></i>
     <span>{{ text }}</span>
-    <i class="iconfont icon-right arrow" style="color: gray"></i>
+    <i class="iconfont icon-right arrow" style="color: #737373"></i>
   </div>
 </template>
 
 <script>
 export default {
 
-  props: ['text'],
+  props: ['text', 'icon', 'color'],
 
   methods: {
     onClick() {
       this.$emit('click');
     }
+  },
+
+  beforeMount() {
+
   },
 
 }
