@@ -38,11 +38,11 @@ export default {
     // 验证成功，根据type跳转到对应页面
     if (type === 2) {
       // 到教师页面
-      wx.redirectTo({ url: '/pages/teacher/teacher-main/main' });
+      wx.redirectTo({ url: '/pages/teacher-main/main' });
       return;
     }
     // 到学生页面
-    wx.redirectTo({ url: '/pages/student/student-main/main' });
+    wx.redirectTo({ url: '/pages/student-main/main' });
   },
 }
 </script>

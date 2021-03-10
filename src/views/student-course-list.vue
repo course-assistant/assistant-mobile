@@ -1,5 +1,5 @@
 <template>
-  <div class="student-course">
+  <div class="student-course-list">
     <!-- 顶部搜索框 -->
     <van-search placeholder="输入查找课程" @search="onSearch" />
 
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CourseItem from '../../../../components/CourseItem.vue';
+import CourseItem from '@/components/CourseItem.vue';
 
 export default {
   data() {
@@ -36,7 +36,7 @@ export default {
   methods: {
     jump(course_id) {
       wx.navigateTo({
-        url: `/pages/student/student-course-detail/course-detail/main?course_id=${course_id}`
+        url: `/pages/student-course-detail/main?course_id=${course_id}`
       });
     }
   },
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.student-course {
+.student-course-list {
   width: 100%;
   height: 100%;
 

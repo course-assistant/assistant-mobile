@@ -1,6 +1,6 @@
 <template>
-  <div class="week-mission-student">
-    <!-- <div
+  <div class="teacher-course-weekmissions">
+    <div
       class="week-mission-item"
       v-for="(week_mission, index) in week_missions"
       :key="index"
@@ -9,21 +9,11 @@
       <p>
         {{ week_mission.week_mission_name }}
       </p>
-    </div> -->
-
-    <MyCell
-      v-for="(week_mission, index) in week_missions"
-      :key="index"
-      :text="week_mission.week_mission_name"
-      @click="toWeekMissionDetail(week_mission.week_mission_id)"
-    />
-    
+    </div>
   </div>
 </template>
 
 <script>
-import MyCell from '../../../../../components/MyCell.vue';
-
 export default {
 
   data() {
@@ -33,8 +23,6 @@ export default {
   },
 
   props: ['course_id'],
-
-  components: { MyCell },
 
   methods: {
     // 刷新页面的数据，给父组件调用
@@ -52,7 +40,7 @@ export default {
     // 跳转到周任务详情
     toWeekMissionDetail(id) {
       wx.navigateTo({
-        url: `/pages/common/page/weekmission-detail/main?week_mission_id=${id}`
+        url: `/pages/user-weekmission-detail/main?week_mission_id=${id}`
       });
     }
   },
@@ -61,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.week-mission-student {
+.teacher-course-weekmissions {
   background: #f5f6f8;
   padding: 10px 0;
 

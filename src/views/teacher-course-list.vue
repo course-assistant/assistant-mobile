@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CourseItem from '../../../../components/CourseItem.vue';
+import CourseItem from '@/components/CourseItem.vue';
 
 export default {
 
@@ -43,7 +43,7 @@ export default {
     // 跳转到教师的课程详情
     jump(id) {
       wx.navigateTo({
-        url: `/pages/teacher/teacher-course-detail/course-detail/main?course_id=${id}`
+        url: `/pages/teacher-course-detail/main?course_id=${id}`
       });
     },
   },

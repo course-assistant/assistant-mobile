@@ -5,7 +5,7 @@
 
       <StudentCourse v-if="active == 1" />
 
-      <StudentHome v-if="active == 2" />
+      <StudentMe v-if="active == 2" />
     </div>
 
     <!-- tabbar -->
@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import StudentIndex from './view/student-index.vue';
-import StudentCourse from './view/student-course.vue';
-import StudentHome from './view/student-home.vue';
+import StudentIndex from '@/views/student-index.vue';
+import StudentCourse from '@/views/student-course-list.vue';
+import StudentMe from '@/views/student-me.vue';
 
 export default {
   data() {
@@ -32,7 +32,7 @@ export default {
   components: {
     StudentIndex,
     StudentCourse,
-    StudentHome
+    StudentMe
   },
 
   methods: {

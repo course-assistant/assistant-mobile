@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Index from './weekmission-detail'
+import Index from './student-course-detail'
 
 const index = new Vue(Index)
 

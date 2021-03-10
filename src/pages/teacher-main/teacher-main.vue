@@ -5,7 +5,7 @@
 
       <TeacherCourse v-if="active == 1" />
 
-      <TeacherHome v-if="active == 2" />
+      <TeacherMe v-if="active == 2" />
     </div>
 
     <!-- tabbar -->
@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import TeacherIndex from './view/teacher-index.vue';
-import TeacherCourse from './view/teacher-course.vue';
-import TeacherHome from './view/teacher-home.vue';
+import TeacherIndex from '@/views/teacher-index.vue';
+import TeacherCourse from '@/views/teacher-course-list.vue';
+import TeacherMe from '@/views/teacher-me.vue';
 
 export default {
   data() {
@@ -34,7 +34,7 @@ export default {
   components: {
     TeacherIndex,
     TeacherCourse,
-    TeacherHome
+    TeacherMe
   },
 
   methods: {

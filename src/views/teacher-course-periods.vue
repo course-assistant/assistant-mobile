@@ -1,5 +1,5 @@
 <template>
-  <div class="period-teacher">
+  <div class="teacher-course-periods">
     <van-collapse :value="activeNames" @change="onChange">
       <!-- 折叠菜单 -->
       <van-collapse-item
@@ -61,7 +61,7 @@ export default {
     toPeriodDetail(id) {
       console.log('to period ' + id);
       wx.navigateTo({
-        url: `/pages/teacher/teacher-course-detail/period-detail/main?period_id=${id}`
+        url: `/pages/teacher-period-detail/main?period_id=${id}`
       });
     },
 
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.period-teacher {
+.teacher-course-periods {
   .period-item {
     height: 80rpx;
     display: flex;

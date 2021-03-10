@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import Period from './view/period-student.vue';
-import WeekMission from './view/week-mission-student';
+import Period from '@/views/student-course-periods.vue';
+import WeekMission from '@/views/student-course-weekmissions.vue';
 
 export default {
 

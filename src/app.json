@@ -3,14 +3,14 @@
     "pages/welcome/main",
     "pages/login/main",
 
-    "pages/teacher/teacher-main/main",
-    "pages/teacher/teacher-course-detail/course-detail/main",
-    "pages/teacher/teacher-course-detail/period-detail/main",
+    "pages/teacher-main/main",
+    "pages/teacher-course-detail/main",
+    "pages/teacher-period-detail/main",
 
-    "pages/student/student-main/main",
-    "pages/student/student-course-detail/course-detail/main",
+    "pages/student-main/main",
+    "pages/student-course-detail/main",
 
-    "pages/common/page/weekmission-detail/main"
+    "pages/user-weekmission-detail/main"
   ],
 
 

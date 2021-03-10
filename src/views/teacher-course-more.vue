@@ -1,5 +1,5 @@
 <template>
-  <div class="course-more-teacher">
+  <div class="teacher-course-more">
     <van-cell title="班级" icon="orders-o" is-link @click="toCourseClass" />
     <van-cell
       title="统计"
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.course-more-teacher {
+.teacher-course-more {
   padding: 20rpx 0;
 }
 </style>

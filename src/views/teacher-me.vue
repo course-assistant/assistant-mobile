@@ -1,5 +1,5 @@
 <template>
-  <div class="teacher-home">
+  <div class="teacher-me">
     <div class="head">
       <img :src="avatar" alt="" />
       <span>{{ name }}</span>
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import Dialog from '../../../../../static/vant/dialog/dialog';
-import MyCell from '../../../../components/MyCell.vue';
+import Dialog from '@/../static/vant/dialog/dialog';
+import MyCell from '@/components/MyCell.vue';
 
 export default {
 
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.teacher-home {
+.teacher-me {
   width: 100%;
   height: 100%;
   background: #f4f5f7;

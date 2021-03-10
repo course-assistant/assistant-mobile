@@ -20,15 +20,13 @@
         <CourseMore :course_id="course_data.course_id" />
       </van-tab>
     </van-tabs>
-
-    <van-toast id="custom-selector" />
   </div>
 </template>
 
 <script>
-import Period from './view/period-teacher.vue';
-import WeekMission from './view/week-mission-teacher';
-import CourseMore from './view/course-more-teacher';
+import Period from '@/views/teacher-course-periods.vue';
+import WeekMission from '@/views/teacher-course-weekmissions.vue';
+import CourseMore from '@/views/teacher-course-more.vue';
 
 export default {
 

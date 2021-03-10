@@ -1,5 +1,5 @@
 <template>
-  <div class="student-home">
+  <div class="student-me">
     <div class="head">
       <img :src="avatar" alt="" />
       <span>{{ name }}</span>
@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import Dialog from '../../../../../static/vant/dialog/dialog';
-import MyCell from '../../../../components/MyCell.vue';
+import Dialog from '@/../static/vant/dialog/dialog';
+import MyCell from '@/components/MyCell.vue';
 
 export default {
 
@@ -156,7 +156,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.student-home {
+.student-me {
   width: 100%;
   height: 100%;
   background: #f4f5f7;

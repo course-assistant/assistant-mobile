@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import Dialog from '../../../../../static/vant/dialog/dialog';
+import Dialog from '@/../static/vant/dialog/dialog';
 
 export default {
 
