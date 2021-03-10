@@ -5,7 +5,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./static/iconfont.css";
+@import "./common/icon.css";
 
 page {
   width: 100%;
