@@ -60,6 +60,10 @@ export default {
 
     toPeriodDetail(id) {
       console.log('to student period ' + id);
+      wx.navigateTo({
+        url:
+          `/pages/student-period-detail/main?period_id=${id}`
+      });
 
     },
 
