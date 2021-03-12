@@ -14,20 +14,15 @@
             class="test-item"
             v-for="(test, index) in periodtests"
             :key="index"
+            v-if="test.period_test_status == 1"
+            @click="totestDetail(test.period_test_id)"
           >
             <img
               src="https://mooc1-api.chaoxing.com/images/work/phone/task-work-gray.png"
               alt=""
             />
             <p class="test-name">{{ test.period_test_name }}</p>
-            <p
-              v-if="test.period_test_status == 2"
-              class="test-status"
-              @click="issueTest(test.period_test_id)"
-            >
-              未发布
-            </p>
-            <p v-else class="test-status">已发布</p>
+            <p class="test-status">已发布</p>
           </div>
         </div>
       </van-tab>
@@ -52,8 +47,6 @@
 </template>
 
 <script>
-import Dialog from '@/../static/vant/dialog/dialog';
-
 export default {
 
   data() {
@@ -94,26 +87,8 @@ export default {
     },
 
     // 点击发布随堂测试
-    issueTest(test_id) {
-      console.log(test_id);
-      Dialog.confirm({
-        title: '提示',
-        message: '确定发布该测试',
-      }).then(async () => {
-        console.log('发布');
-        let [data, err] = await this.$awaitWrap(this.$post('periodtest/issue', {
-          id: test_id
-        }));
-        // 刷新
-        wx.showLoading({
-          title: '刷新...',
-          mask: true,
-        });
-        this.refreshTests();
-        wx.hideLoading();
-      }).catch(() => {
-        // 操作取消
-      });
+    totestDetail(test_id) {
+      console.log('to test detail ' + test_id);
     }
   },
 
