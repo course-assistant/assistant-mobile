@@ -10,6 +10,7 @@
     "pages/student-main/main",
     "pages/student-course-detail/main",
     "pages/student-period-detail/main",
+    "pages/student-test-detail/main",
 
     "pages/user-weekmission-detail/main"
   ],

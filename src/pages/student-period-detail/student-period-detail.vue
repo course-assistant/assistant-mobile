@@ -89,6 +89,9 @@ export default {
     // 点击发布随堂测试
     totestDetail(test_id) {
       console.log('to test detail ' + test_id);
+      wx.navigateTo({
+        url: `/pages/student-test-detail/main?test_id=${test_id}`
+      });
     }
   },
 
