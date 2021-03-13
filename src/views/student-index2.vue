@@ -1,65 +1,11 @@
 <template>
   <div class="student-index">
     <!-- 轮播图 -->
-    <swiper
-      class="swiper"
-      :indicator-dots="true"
-      :autoplay="true"
-      :interval="2000"
-      :duration="500"
-      indicator-color="#8d93b5"
-      indicator-active-color="#fff"
-    >
-      <block v-for="(swiper, index) in swipers" :key="index">
-        <swiper-item>
-          <img :src="swiper" alt="" />
-        </swiper-item>
-      </block>
-    </swiper>
+    <div class="swiper">
+      <img src="https://uc.chaoxing.com/backSchool/images/mBanner.png" alt="" />
+    </div>
 
     <!-- 应用 -->
-    <div class="apps">
-      <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">我的课程</p>
-        </van-grid-item>
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
-        </van-grid-item>
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
-        </van-grid-item>
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
-        </van-grid-item>
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
-        </van-grid-item>
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
-        </van-grid-item>
-      </van-grid>
-    </div>
-
-    <!-- 最近课程 -->
-    <div class="recent-course">
-      <p>最近课程</p>
-      <van-grid column-num="2">
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-      </van-grid>
-    </div>
-
-    <!-- old -->
     <div class="app">
       <div class="app-title"><p>学习</p></div>
       <van-grid :border="false">
@@ -142,17 +88,6 @@
 
 <script>
 export default {
-
-  data() {
-    return {
-      swipers: [
-        'https://uc.chaoxing.com/backSchool/images/mBanner.png',
-        'https://uc.chaoxing.com/backSchool/images/mBanner.png',
-        'https://uc.chaoxing.com/backSchool/images/mBanner.png'
-      ]
-    }
-  },
-
   methods: {
 
     // 切换页面
@@ -172,7 +107,7 @@ export default {
 .student-index {
   width: 100%;
   height: 100%;
-  background: #f7f7f7;
+  background: #fff;
 
   .swiper {
     width: 100%;
@@ -181,23 +116,6 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-  }
-
-  .apps {
-    margin: 15rpx;
-    padding: 0 15rpx;
-    border-radius: 16rpx;
-    background: #fff;
-    .app-item {
-      i {
-        font-size: 58rpx;
-        margin-bottom: 8rpx;
-      }
-      .name {
-        margin-top: 5rpx;
-        font-size: 24rpx;
-      }
     }
   }
 

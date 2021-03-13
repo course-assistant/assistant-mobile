@@ -38,8 +38,8 @@ export default {
   }
 
   i {
-    margin: 0 25rpx;
-    font-size: 40rpx;
+    margin: 0 22rpx 0 25rpx;
+    font-size: 36rpx;
   }
 
   span {
