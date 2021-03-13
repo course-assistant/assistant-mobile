@@ -50,17 +50,21 @@
     <!-- 最近课程 -->
     <div class="recent-course">
       <p>最近课程</p>
-      <van-grid column-num="2">
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-        <van-grid-item icon="photo-o" text="文字" />
-      </van-grid>
+      <div class="course-list">
+        <div
+          class="course-item"
+          v-for="(course, index) in courses"
+          :key="index"
+        >
+          <img class="cover" :src="course.course_cover" alt="" />
+          <p class="name">{{ course.course_name }}</p>
+          <p class="subname">{{ course.teacher_name }}</p>
+        </div>
+      </div>
     </div>
 
     <!-- old -->
-    <div class="app">
+    <!-- <div class="app">
       <div class="app-title"><p>学习</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
@@ -73,10 +77,10 @@
           <p class="name">自我评估</p>
         </van-grid-item>
       </van-grid>
-    </div>
+    </div> -->
 
     <!-- 服务 -->
-    <div class="app">
+    <!-- <div class="app">
       <div class="app-title"><p>教学服务</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
@@ -99,10 +103,10 @@
           <p class="name">报纸</p>
         </van-grid-item>
       </van-grid>
-    </div>
+    </div> -->
 
     <!-- 工具 -->
-    <div class="app">
+    <!-- <div class="app">
       <div class="app-title"><p>工具</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
@@ -115,10 +119,10 @@
           <p class="name">更多工具</p>
         </van-grid-item>
       </van-grid>
-    </div>
+    </div> -->
 
     <!-- 反馈 -->
-    <div class="app">
+    <!-- <div class="app">
       <div class="app-title"><p>反馈</p></div>
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
@@ -131,12 +135,12 @@
           <p class="name">Bug反馈</p>
         </van-grid-item>
 
-        <!-- <van-grid-item class="app-item" use-slot @click="notNow">
+        <van-grid-item class="app-item" use-slot @click="notNow">
           <i class="iconfont icon-github" style="color: #191717"></i>
           <p class="name">开源地址</p>
-        </van-grid-item> -->
+        </van-grid-item>
       </van-grid>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -149,11 +153,48 @@ export default {
         'https://uc.chaoxing.com/backSchool/images/mBanner.png',
         'https://uc.chaoxing.com/backSchool/images/mBanner.png',
         'https://uc.chaoxing.com/backSchool/images/mBanner.png'
-      ]
+      ],
+
+      courses: [
+        {
+          course_id: 0,
+          course_name: '课程',
+          teacher_name: '教师',
+          course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
+        },
+        // {
+        //   course_id: 0,
+        //   course_name: 'Web前端开发',
+        //   teacher_name: '张妍琰',
+        //   course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
+        // },
+        // {
+        //   course_id: 0,
+        //   course_name: 'Web前端开发',
+        //   teacher_name: '张妍琰',
+        //   course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
+        // },
+      ],
     }
   },
 
   methods: {
+    // 刷新最近的4个课程
+    async refreshRecentCourse() {
+      this.$loading('Loading...');
+      let [data, err] = await this.$awaitWrap(this.$get('course/findbystudentid', {
+        id: wx.getStorageSync('hncj_assistant_wx_user_id'),
+        page: 0,
+        size: 4,
+        status: 1
+      }));
+      if (err) {
+        this.$message.warning(err);
+        return;
+      }
+      this.courses = data.data;
+      wx.hideLoading();
+    },
 
     // 切换页面
     switchTab() {
@@ -163,7 +204,13 @@ export default {
     // 提示功能还不可用
     notNow() {
       this.$toast('此功能目前在实验阶段，暂时不可用');
-    }
+    },
+
+
+  },
+
+  async beforeMount() {
+    await this.refreshRecentCourse();
   },
 }
 </script>
@@ -171,8 +218,9 @@ export default {
 <style lang="scss" scoped>
 .student-index {
   width: 100%;
-  height: 100%;
+  // height: 100%;
   background: #f7f7f7;
+  overflow: auto;
 
   .swiper {
     width: 100%;
@@ -185,7 +233,7 @@ export default {
   }
 
   .apps {
-    margin: 15rpx;
+    margin: 20rpx;
     padding: 0 15rpx;
     border-radius: 16rpx;
     background: #fff;
@@ -197,6 +245,57 @@ export default {
       .name {
         margin-top: 5rpx;
         font-size: 24rpx;
+      }
+    }
+  }
+
+  .recent-course {
+    p {
+      margin: 0 0 10rpx 20rpx;
+      font-size: 36rpx;
+    }
+    .course-list {
+      margin: 0 20rpx;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .course-item {
+        width: 49%;
+        height: 280rpx;
+        margin-bottom: 18rpx;
+        background: #fff;
+        border-radius: 16rpx;
+
+        .cover {
+          width: 100%;
+          height: 190rpx;
+          border-top-left-radius: 16rpx;
+          border-top-right-radius: 16rpx;
+          object-fit: cover;
+          margin: 0;
+          // background: seagreen;
+        }
+
+        .name {
+          margin: 0;
+          margin-top: -5rpx;
+          margin-left: 15rpx;
+          font-weight: bold;
+          height: 40rpx;
+          line-height: 40rpx;
+          font-size: 28rpx;
+          // background: salmon;
+        }
+
+        .subname {
+          margin: 0;
+          margin-left: 15rpx;
+          height: 45rpx;
+          line-height: 45rpx;
+          font-size: 22rpx;
+          // background: sandybrown;
+        }
       }
     }
   }
