@@ -25,24 +25,24 @@
           <p class="name">我的课程</p>
         </van-grid-item>
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
+          <i class="iconfont icon-evaluate" style="color: #08aeab"></i>
           <p class="name">自我评估</p>
         </van-grid-item>
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
+          <i class="iconfont icon-app" style="color: #08aeab"></i>
+          <p class="name">四六级</p>
         </van-grid-item>
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
+          <i class="iconfont icon-video" style="color: #4e8df6"></i>
+          <p class="name">视频</p>
         </van-grid-item>
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
+          <i class="iconfont icon-query" style="color: #08aeab"></i>
+          <p class="name">成绩查询</p>
         </van-grid-item>
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
+          <i class="iconfont icon-more" style="color: #93a2f9"></i>
+          <p class="name">更多工具</p>
         </van-grid-item>
       </van-grid>
     </div>
@@ -55,6 +55,7 @@
           class="course-item"
           v-for="(course, index) in courses"
           :key="index"
+          @click="toCourseDetail(course.course_id)"
         >
           <img class="cover" :src="course.course_cover" alt="" />
           <p class="name">{{ course.course_name }}</p>
@@ -63,84 +64,21 @@
       </div>
     </div>
 
-    <!-- old -->
-    <!-- <div class="app">
-      <div class="app-title"><p>学习</p></div>
+    <!-- app -->
+    <p style="margin: 0 0 10rpx 25rpx; font-size: 36rpx">反馈</p>
+    <div class="apps">
       <van-grid :border="false">
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">我的课程</p>
-        </van-grid-item>
-
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-course" style="color: #08aeab"></i>
-          <p class="name">自我评估</p>
-        </van-grid-item>
-      </van-grid>
-    </div> -->
-
-    <!-- 服务 -->
-    <!-- <div class="app">
-      <div class="app-title"><p>教学服务</p></div>
-      <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-app" style="color: #4e8df6"></i>
-          <p class="name">四六级</p>
-        </van-grid-item>
-
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-video" style="color: #4e8df6"></i>
-          <p class="name">视频</p>
-        </van-grid-item>
-
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-book" style="color: #4e8df6"></i>
-          <p class="name">图书</p>
-        </van-grid-item>
-
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-newspaper" style="color: #83c1ff"></i>
-          <p class="name">报纸</p>
-        </van-grid-item>
-      </van-grid>
-    </div> -->
-
-    <!-- 工具 -->
-    <!-- <div class="app">
-      <div class="app-title"><p>工具</p></div>
-      <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-random" style="color: #0590df"></i>
-          <p class="name">成绩查询</p>
-        </van-grid-item>
-
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-more" style="color: #93a2f9"></i>
-          <p class="name">更多工具</p>
-        </van-grid-item>
-      </van-grid>
-    </div> -->
-
-    <!-- 反馈 -->
-    <!-- <div class="app">
-      <div class="app-title"><p>反馈</p></div>
-      <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-feedback" style="color: #36a99e"></i>
+          <i class="iconfont icon-feedback" style="color: #08aeab"></i>
           <p class="name">意见反馈</p>
         </van-grid-item>
 
         <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-bug" style="color: #36cfc9"></i>
+          <i class="iconfont icon-bug" style="color: #08aeab"></i>
           <p class="name">Bug反馈</p>
         </van-grid-item>
-
-        <van-grid-item class="app-item" use-slot @click="notNow">
-          <i class="iconfont icon-github" style="color: #191717"></i>
-          <p class="name">开源地址</p>
-        </van-grid-item>
       </van-grid>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -162,18 +100,6 @@ export default {
           teacher_name: '教师',
           course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
         },
-        // {
-        //   course_id: 0,
-        //   course_name: 'Web前端开发',
-        //   teacher_name: '张妍琰',
-        //   course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
-        // },
-        // {
-        //   course_id: 0,
-        //   course_name: 'Web前端开发',
-        //   teacher_name: '张妍琰',
-        //   course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
-        // },
       ],
     }
   },
@@ -196,6 +122,13 @@ export default {
       wx.hideLoading();
     },
 
+    toCourseDetail(id) {
+      console.log('to ' + id);
+      wx.navigateTo({
+        url: `/pages/student-course-detail/main?course_id=${id}`
+      });
+    },
+
     // 切换页面
     switchTab() {
       this.$emit('switchTab', 1);
@@ -203,7 +136,11 @@ export default {
 
     // 提示功能还不可用
     notNow() {
-      this.$toast('此功能目前在实验阶段，暂时不可用');
+      wx.showToast({
+        title: '此功能目前在实验阶段，暂时不可用',
+        icon: 'none',
+        duration: 1500
+      });
     },
 
 
@@ -251,7 +188,7 @@ export default {
 
   .recent-course {
     p {
-      margin: 0 0 10rpx 20rpx;
+      margin: 0 0 10rpx 25rpx;
       font-size: 36rpx;
     }
     .course-list {
@@ -274,7 +211,6 @@ export default {
           border-top-right-radius: 16rpx;
           object-fit: cover;
           margin: 0;
-          // background: seagreen;
         }
 
         .name {
@@ -285,7 +221,6 @@ export default {
           height: 40rpx;
           line-height: 40rpx;
           font-size: 28rpx;
-          // background: salmon;
         }
 
         .subname {
@@ -294,33 +229,7 @@ export default {
           height: 45rpx;
           line-height: 45rpx;
           font-size: 22rpx;
-          // background: sandybrown;
         }
-      }
-    }
-  }
-
-  .app {
-    .app-title {
-      height: 55rpx;
-      background: #f7f8f9;
-      p {
-        color: #9a9a9a;
-        height: 55rpx;
-        line-height: 55rpx;
-        margin-left: 18rpx;
-        font-size: 30rpx;
-      }
-    }
-
-    // 单个应用的样式
-    .app-item {
-      i {
-        font-size: 80rpx;
-      }
-      .name {
-        margin-top: 15rpx;
-        font-size: 28rpx;
       }
     }
   }
