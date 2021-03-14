@@ -1,5 +1,11 @@
 <template>
   <div class="student-course-detail">
+    <div class="head">
+      <img class="head" :src="course_data.course_cover" alt="" />
+      <p class="course-name">{{ course_data.course_name }}</p>
+      <p class="teacher-name">{{ course_data.teacher_name }}</p>
+    </div>
+
     <van-tabs
       :active="active"
       @change="onTabChange"
@@ -62,6 +68,8 @@ export default {
       title: this.course_data.course_name
     })
 
+
+
     // 刷新子组件
     this.$refs.period.refresh();
     this.$refs.weekMission.refresh();
@@ -80,5 +88,33 @@ export default {
   height: 100%;
 
   background: #f5f6f8;
+
+  .head {
+    position: relative;
+    img {
+      width: 100%;
+      height: 270rpx;
+      object-fit: cover;
+    }
+
+    .course-name {
+      position: absolute;
+      top: 155rpx;
+      left: 25rpx;
+      padding: 0;
+      font-size: 36rpx;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .teacher-name {
+      position: absolute;
+      top: 210rpx;
+      left: 25rpx;
+      padding: 0;
+      font-size: 26rpx;
+      color: #fff;
+    }
+  }
 }
 </style>
