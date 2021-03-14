@@ -7,9 +7,9 @@
       <p class="teacher-name">{{ course.teacher_name }}</p>
     </div>
 
-    <div class="symbol">
+    <!-- <div class="symbol">
       <van-icon name="arrow" />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
 .course-item {
   position: relative;
   width: 100%;
-  height: 140rpx;
+  height: 180rpx;
   margin-top: 20rpx;
   border-radius: 16rpx;
   display: flex;
@@ -39,10 +39,11 @@ export default {
   background: #fff;
 
   .cover {
-    width: 90rpx;
-    height: 90rpx;
-    border-radius: 12rpx;
+    width: 220rpx;
+    height: 150rpx;
+    border-radius: 8rpx;
     margin-left: 20rpx;
+    object-fit: cover;
   }
   .desc {
     margin-left: 20rpx;

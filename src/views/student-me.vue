@@ -7,7 +7,12 @@
     <div class="margin"></div>
 
     <MyCell text="我的课程" icon="icon-app" color="#fa8543" @click="jump" />
-    <MyCell text="加入课程" icon="icon-add" color="#f45642" @click="selectCourseShow = true" />
+    <MyCell
+      text="加入课程"
+      icon="icon-add"
+      color="#f45642"
+      @click="selectCourseShow = true"
+    />
     <MyCell text="账号管理" @click="jump" />
     <div class="margin"></div>
 
@@ -104,6 +109,7 @@ export default {
         });
         return;
       }
+      console.log('扫码');
       console.log(data);
       this.inviteCode = data.result
       this.selectCourse();
