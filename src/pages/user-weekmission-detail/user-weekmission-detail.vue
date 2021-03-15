@@ -1,6 +1,6 @@
 <template>
   <div class="weekmission-detail">
-    <p class="mission-content">{{ week_mission.week_mission_content }}</p>
+    <p class="mission-content" v-html="missionContent"></p>
   </div>
 </template>
 
@@ -13,7 +13,16 @@ export default {
     return {
       active: 0,
 
-      week_mission: {}
+      week_mission: {
+        week_mission_content: ''
+      }
+    }
+  },
+
+  computed: {
+    missionContent() {
+      let content = this.week_mission.week_mission_content.replace(/\n/g, '<br>');
+      return content;
     }
   },
 
@@ -33,7 +42,7 @@ export default {
     wx.setNavigationBarTitle({
       title: this.week_mission.week_mission_name
     })
-    
+
     wx.hideLoading()
   },
 
@@ -47,7 +56,6 @@ export default {
 
 <style lang="scss" scoped>
 .weekmission-detail {
-  height: 100%;
   padding: 20rpx;
   background: #fff;
 }
