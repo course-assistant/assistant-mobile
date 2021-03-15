@@ -78,6 +78,8 @@ export default {
 
 <style lang="scss" scoped>
 .student-course-periods {
+  background: #f5f6f8;
+
   .period-item {
     height: 80rpx;
     display: flex;
