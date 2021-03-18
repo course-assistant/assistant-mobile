@@ -12,7 +12,8 @@
     "pages/student-period-detail/main",
     "pages/student-test-detail/main",
 
-    "pages/user-weekmission-detail/main"
+    "pages/user-weekmission-detail/main",
+    "pages/user-discussion-detail/main"
   ],
 
 

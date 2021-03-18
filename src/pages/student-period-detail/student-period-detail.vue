@@ -33,6 +33,7 @@
             class="discussion-item"
             v-for="(discussion, index) in discussions"
             :key="index"
+            @click="toDiscussionDetail(discussion.discussion_id)"
           >
             <van-tag plain type="primary" style="margin: 0 20rpx">讨论</van-tag>
             <span>{{ discussion.discussion_title }}</span>
@@ -92,7 +93,16 @@ export default {
       wx.navigateTo({
         url: `/pages/student-test-detail/main?test_id=${test_id}`
       });
-    }
+    },
+
+
+
+    // 跳转到讨论详情
+    toDiscussionDetail(id) {
+      wx.navigateTo({
+        url: `/pages/user-discussion-detail/main`
+      });
+    },
   },
 
   // 加载数据
