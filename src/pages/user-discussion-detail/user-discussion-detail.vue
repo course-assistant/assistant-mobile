@@ -39,11 +39,11 @@ export default {
     return {
       discussion: {
         discussion_id: 0,
-        discussion_title: '讨论谓词公式与子句集',
-        discussion_content: '谓词公式与子句集等价吗？在基于谓词逻辑的推理中，你觉得有必要把谓词公式转化为子句集吗？',
-        discussion_date: '2020-11-22',
-        teacher_name: '张妍琰',
-        teacher_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+        // discussion_title: '讨论谓词公式与子句集',
+        // discussion_content: '谓词公式与子句集等价吗？在基于谓词逻辑的推理中，你觉得有必要把谓词公式转化为子句集吗？',
+        // discussion_date: '2020-11-22',
+        // teacher_name: '张妍琰',
+        // teacher_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
       },
 
       comments: [
@@ -80,7 +80,12 @@ export default {
 
     // 刷新评论
     async refreshComments(id) {
-      
+      let [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectcommentsbydisscussionid', { id }));
+      if (err) {
+        this.$catch(err);
+        return;
+      }
+      this.comments = data.data;
     },
   },
 
