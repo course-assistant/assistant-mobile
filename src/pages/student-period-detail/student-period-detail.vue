@@ -100,7 +100,7 @@ export default {
     // 跳转到讨论详情
     toDiscussionDetail(id) {
       wx.navigateTo({
-        url: `/pages/user-discussion-detail/main`
+        url: `/pages/user-discussion-detail/main?discussion_id=${id}`
       });
     },
   },
