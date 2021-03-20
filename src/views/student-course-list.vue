@@ -12,7 +12,7 @@
       />
 
       <!-- 课程为空时提示 -->
-      <div v-if="courses.length == 0 || courses == null">
+      <div v-if="courses == null || courses.length == 0">
         <van-empty description="暂无课程，请在账户页面进行添加" />
       </div>
     </div>
@@ -47,21 +47,21 @@ export default {
   },
 
   async beforeMount() {
-    // this.$loading();
-    // // 加载学生的课程
-    // let [data, err] = await this.$awaitWrap(this.$get('course/findbystudentid', {
-    //   id: wx.getStorageSync('hncj_assistant_wx_user_id'),
-    //   page: 0,
-    //   size: 1000,
-    //   status: 1
-    // }));
-    // if (err) {
-    //   this.$catch(err);
-    //   wx.hideLoading();
-    //   return;
-    // }
-    // this.courses = data.data;
-    // wx.hideLoading();
+    this.$loading();
+    // 加载学生的课程
+    let [data, err] = await this.$awaitWrap(this.$get('course/findbystudentid', {
+      id: wx.getStorageSync('hncj_assistant_wx_user_id'),
+      page: 0,
+      size: 1000,
+      status: 1
+    }));
+    if (err) {
+      this.$catch(err);
+      wx.hideLoading();
+      return;
+    }
+    this.courses = data.data;
+    wx.hideLoading();
   },
 
 }

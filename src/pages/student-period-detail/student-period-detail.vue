@@ -25,6 +25,11 @@
             <p class="test-status">已发布</p>
           </div>
         </div>
+
+        <!-- 空提示 -->
+        <div v-if="periodtests == null || periodtests.length == 0">
+          <van-empty description="暂无随堂测试" />
+        </div>
       </van-tab>
 
       <van-tab title="课堂讨论">
@@ -38,6 +43,10 @@
             <van-tag plain type="primary" style="margin: 0 20rpx">讨论</van-tag>
             <span>{{ discussion.discussion_title }}</span>
           </div>
+        </div>
+        <!-- 空提示 -->
+        <div v-if="discussions == null || discussions.length == 0">
+          <van-empty image="search" description="暂无课堂讨论" />
         </div>
       </van-tab>
     </van-tabs>
