@@ -27,15 +27,21 @@ MyUtil.install = (Vue) => {
       mask: true
     });
   }
-  
+
 
   // toast
-  Vue.prototype.$toast = (msg) => {
+  Vue.prototype.$toast = (msg, mask) => {
+    let showMask = true;
+    if (mask == true) {
+      showMask = true;
+    } else {
+      showMask = false;
+    }
     wx.showToast({
       title: msg,
       icon: 'none',
       duration: 1500,
-      mask: true
+      mask: showMask
     });
   }
 

@@ -62,6 +62,10 @@
           <p class="subname">{{ course.teacher_name }}</p>
         </div>
       </div>
+      <!-- 没有课程时提示 -->
+      <div v-if="courses == null || courses.length == 0">
+        <p style="margin-left: 30rpx; font-size: 30rpx">暂无课程</p>
+      </div>
     </div>
 
     <!-- app -->
@@ -94,12 +98,12 @@ export default {
       ],
 
       courses: [
-        {
-          course_id: 0,
-          course_name: '课程',
-          teacher_name: '教师',
-          course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
-        },
+        // {
+        //   course_id: 0,
+        //   course_name: '课程',
+        //   teacher_name: '教师',
+        //   course_cover: 'https://p.ananas.chaoxing.com/star3/origin/a597b7c95a3e72dbbdb21f17011ce85f.jpg'
+        // },
       ],
     }
   },
@@ -107,7 +111,8 @@ export default {
   methods: {
     // 刷新最近的4个课程
     async refreshRecentCourse() {
-      this.$loading('Loading...');
+      console.log('加载课程...');
+      this.$loading('加载课程...');
       let [data, err] = await this.$awaitWrap(this.$get('course/findbystudentid', {
         id: wx.getStorageSync('hncj_assistant_wx_user_id'),
         page: 0,
@@ -115,7 +120,7 @@ export default {
         status: 1
       }));
       if (err) {
-        this.$message.warning(err);
+        wx.hideLoading();
         return;
       }
       this.courses = data.data;

@@ -28,6 +28,8 @@ MyHttp.install = (Vue) => {
       fly.get(path, params).then(res => {
         if (res.data.code === 200) {
           resolve(res.data);
+        } else if (res.data.code === 300) {
+          resolve(res.data.msg);
         } else if (res.data.code === 400) {
           reject(res.data.msg);
         }

@@ -43,7 +43,9 @@ export default {
     }
   },
 
+
   beforeMount() {
+    console.log('进入 学生首页');
     this.active = 0;
   },
 
