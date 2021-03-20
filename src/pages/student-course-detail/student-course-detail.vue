@@ -14,12 +14,15 @@
       swipeable
       sticky
     >
-      <van-tab title="学时任务">
-        <Period :course_id="course_data.course_id" ref="period" />
+      <van-tab title="周任务">
+        <WeekMission
+          :course_id="course_data.course_id"
+          ref="weekMission"
+        />
       </van-tab>
 
-      <van-tab title="周任务">
-        <WeekMission :course_id="course_data.course_id" ref="weekMission" />
+      <van-tab title="学时任务">
+        <Period :course_id="course_data.course_id" ref="period" />
       </van-tab>
     </van-tabs>
 
@@ -95,6 +98,7 @@ export default {
       width: 100%;
       height: 270rpx;
       object-fit: cover;
+      vertical-align: middle;
     }
 
     .course-name {

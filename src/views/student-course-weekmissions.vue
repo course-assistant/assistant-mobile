@@ -1,21 +1,12 @@
 <template>
   <div class="student-course-weekmissions">
-    <!-- <div
-      class="week-mission-item"
-      v-for="(week_mission, index) in week_missions"
-      :key="index"
-      @click="toWeekMissionDetail(week_mission.week_mission_id)"
-    >
-      <p>
-        {{ week_mission.week_mission_name }}
-      </p>
-    </div> -->
-    <MyCell
-      v-for="(week_mission, index) in week_missions"
-      :key="index"
-      :text="week_mission.week_mission_name"
-      @click="toWeekMissionDetail(week_mission.week_mission_id)"
-    />
+    <div v-for="(week_mission, index) in week_missions" :key="index">
+      <MyCell
+        :text="week_mission.week_mission_name"
+        @click="toWeekMissionDetail(week_mission.week_mission_id)"
+      />
+      <div class="margin"></div>
+    </div>
   </div>
 </template>
 
@@ -63,14 +54,10 @@ export default {
   background: #f5f6f8;
   padding: 10px 0;
 
-  .week-mission-item {
-    height: 78rpx;
-    background: #fff;
-    margin: 10px 0;
-    padding-left: 40rpx;
-
-    display: flex;
-    align-items: center;
+  .margin {
+    width: 100%;
+    height: 20rpx;
+    background: #f5f6f8;
   }
 }
 </style>
