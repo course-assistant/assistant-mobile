@@ -49,6 +49,10 @@
           <van-empty image="search" description="暂无课堂讨论" />
         </div>
       </van-tab>
+
+      <van-tab title="评价">
+        <PeriodEvalation />
+      </van-tab>
     </van-tabs>
 
     <!-- 对话框 -->
@@ -57,6 +61,8 @@
 </template>
 
 <script>
+import PeriodEvalation from '@/views/user-period-evaluation.vue';
+
 export default {
 
   data() {
@@ -72,6 +78,8 @@ export default {
       discussions: []
     }
   },
+
+  components: { PeriodEvalation },
 
   methods: {
     // 刷新随堂测试

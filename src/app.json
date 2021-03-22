@@ -49,6 +49,7 @@
     "van-grid": "/static/vant/grid/index",
     "van-grid-item": "/static/vant/grid-item/index",
     "van-action-sheet": "/static/vant/action-sheet/index",
-    "van-empty": "/static/vant/empty/index"
+    "van-empty": "/static/vant/empty/index",
+    "van-rate": "/static/vant/rate/index"
   }
 }
