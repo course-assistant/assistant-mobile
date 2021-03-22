@@ -1,7 +1,14 @@
 <template>
   <div class="period-evaluation">
-    <van-button type="primary" block>点评</van-button>
-
+    <van-button
+      class="btn-evaluate"
+      round
+      color="#ffd21e"
+      size="small"
+      icon="star-o"
+    >
+      写评价
+    </van-button>
     <!-- 空提示 -->
     <div v-if="evaluations == null || evaluations.length == 0">
       <van-empty image="search" description="暂无评价" />
@@ -99,6 +106,13 @@ export default {
 <style lang="scss" scoped>
 .period-evaluation {
   position: relative;
+
+  .btn-evaluate {
+    position: fixed;
+    bottom: 30rpx;
+    right: 20rpx;
+    z-index: 99;
+  }
 
   .rate {
     width: calc(100% - 30rpx);
