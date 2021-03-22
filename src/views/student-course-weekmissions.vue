@@ -3,7 +3,7 @@
     <div v-for="(week_mission, index) in week_missions" :key="index">
       <MyCell
         :text="week_mission.week_mission_name"
-        @click="toWeekMissionDetail(week_mission.week_mission_id)"
+        @click="toWeekMissionDetail(week_mission.week_id)"
       />
       <div class="margin"></div>
     </div>
@@ -41,7 +41,7 @@ export default {
     // 跳转到周任务详情
     toWeekMissionDetail(id) {
       wx.navigateTo({
-        url: `/pages/user-weekmission-detail/main?week_mission_id=${id}`
+        url: `/pages/user-weekmission-detail/main?week_id=${id}`
       });
     }
   },
