@@ -6,6 +6,7 @@
       color="#ffd21e"
       size="small"
       icon="star-o"
+      @click="toIssueEvaluation"
     >
       写评价
     </van-button>
@@ -27,7 +28,6 @@
           readonly
         />
         <span>35人</span>
-        <!-- <button>评价</button> -->
       </div>
 
       <!-- 评价列表 -->
@@ -86,13 +86,23 @@ export default {
           period_evaluate_degree: 4,
           period_evaluate_quality: 5
         }
-      ]
+      ],
+
+      showEvaluateDialog: false,
     }
   },
 
   components: { EvaluationItem },
 
-  props: ['evaluations', 'role'],
+  props: ['periodid'],
+
+  methods: {
+    toIssueEvaluation() {
+      wx.navigateTo({
+        url: `/pages/student-evaluate/main?period_id=${this.periodid}`
+      });
+    },
+  },
 
   beforeMount() {
     if (this.role == null) {
@@ -108,7 +118,7 @@ export default {
   position: relative;
 
   .btn-evaluate {
-    position: fixed;
+    position: absolute;
     bottom: 30rpx;
     right: 20rpx;
     z-index: 99;

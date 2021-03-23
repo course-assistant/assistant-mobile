@@ -51,12 +51,12 @@
       </van-tab>
 
       <van-tab title="评价">
-        <PeriodEvalation />
+        <PeriodEvalation :periodid="period.period_id"/>
       </van-tab>
     </van-tabs>
 
     <!-- 对话框 -->
-    <van-dialog id="van-dialog" />
+    <van-dialog id="van-dialog"  />
   </div>
 </template>
 

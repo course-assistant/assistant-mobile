@@ -11,6 +11,7 @@
     "pages/student-course-detail/main",
     "pages/student-period-detail/main",
     "pages/student-test-detail/main",
+    "pages/student-evaluate/main",
 
     "pages/user-weekmission-detail/main",
     "pages/user-discussion-detail/main"
