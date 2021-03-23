@@ -51,12 +51,15 @@
       </van-tab>
 
       <van-tab title="评价">
-        <PeriodEvalation :periodid="period.period_id"/>
+        <PeriodEvalation
+          ref="periodEvalationView"
+          :periodid="period.period_id"
+        />
       </van-tab>
     </van-tabs>
 
     <!-- 对话框 -->
-    <van-dialog id="van-dialog"  />
+    <van-dialog id="van-dialog" />
   </div>
 </template>
 
@@ -144,6 +147,9 @@ export default {
     await this.refreshTests();
     // 刷新课堂讨论
     await this.refreshDiscussions();
+    // 刷新学时评价
+    await this.$refs.periodEvalationView.refreshEvaluations();
+
     wx.hideLoading()
   },
 
