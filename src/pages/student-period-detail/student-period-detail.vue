@@ -125,6 +125,19 @@ export default {
     },
   },
 
+
+  async onPullDownRefresh() {
+    this.$loading('刷新中...');
+    // 刷新随堂测试
+    await this.refreshTests();
+    // 刷新课堂讨论
+    await this.refreshDiscussions();
+    // 刷新学时评价
+    await this.$refs.periodEvalationView.refreshEvaluations();
+    wx.hideLoading();
+    wx.stopPullDownRefresh();
+  },
+
   // 加载数据
   async beforeMount() {
     // 获取学时详情
