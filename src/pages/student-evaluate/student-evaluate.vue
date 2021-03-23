@@ -61,7 +61,22 @@ export default {
         title: '提示',
         message: '评价发布后将不可修改，确定发布？',
       }).then(async () => {
-        
+        let [data, err] = await this.$awaitWrap(this.$post('periodevaluation/issue', {
+          period_id: this.period_id,
+          student_id: wx.getStorageSync('hncj_assistant_wx_user_id'),
+          content: this.content,
+          degree: this.degree,
+          quality: this.quality
+        }));
+        if (err) {
+          this.$catch(err);
+          return;
+        }
+        this.$toast(data.msg);
+        // 返回上一页
+        wx.navigateBack({
+          delta: 1
+        });
       }).catch(() => {
       });
 
