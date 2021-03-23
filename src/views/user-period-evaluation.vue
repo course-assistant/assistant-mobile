@@ -31,7 +31,7 @@
             allow-half
             readonly
           />
-          <span class="num">35人</span>
+          <span class="num">{{ evaluations.length }} 人</span>
         </div>
 
         <div class="item">
@@ -47,7 +47,7 @@
             allow-half
             readonly
           />
-          <span class="num">35人</span>
+          <span class="num">{{ evaluations.length }} 人</span>
         </div>
       </div>
 
