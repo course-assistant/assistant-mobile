@@ -18,16 +18,35 @@
     <div v-else>
       <!-- 总分 -->
       <div class="rate">
-        <span> {{ rate }} 分</span>
-        <van-rate
-          :value="rate"
-          size="42rpx"
-          icon="star"
-          void-icon="star-o"
-          allow-half
-          readonly
-        />
-        <span>35人</span>
+        <div class="item">
+          <span>
+            教师教学质量 <span class="score">{{ rate }}</span> 分
+          </span>
+          <van-rate
+            :value="rate"
+            size="42rpx"
+            icon="star"
+            void-icon="star-o"
+            allow-half
+            readonly
+          />
+          <span class="num">35人</span>
+        </div>
+
+        <div class="item">
+          <span>
+            学生掌握程度 <span class="score">{{ rate }}</span> 分
+          </span>
+          <van-rate
+            :value="rate"
+            size="42rpx"
+            icon="star"
+            void-icon="star-o"
+            allow-half
+            readonly
+          />
+          <span class="num">35人</span>
+        </div>
       </div>
 
       <!-- 评价列表 -->
@@ -126,13 +145,29 @@ export default {
 
   .rate {
     width: calc(100% - 30rpx);
-    height: 60px;
     margin: 15rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fef3da;
     border-radius: 10rpx;
+    background: #fef3da;
+
+    .item {
+      height: 100rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        font-size: 28rpx;
+      }
+
+      .score {
+        color: #ffd21e;
+        font-size: 44rpx;
+      }
+
+      .num {
+        color: #c0c0c0;
+      }
+    }
   }
 
   .evaluation-item {

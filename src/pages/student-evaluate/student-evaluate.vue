@@ -51,12 +51,6 @@ export default {
 
   methods: {
     issue() {
-      // console.log(this.period_id);
-      // console.log(wx.getStorageSync('hncj_assistant_wx_user_id'));
-      // console.log(this.degree);
-      // console.log(this.quality);
-      // console.log(this.content);
-
       Dialog.confirm({
         title: '提示',
         message: '评价发布后将不可修改，确定发布？',
@@ -74,12 +68,13 @@ export default {
         }
         this.$toast(data.msg);
         // 返回上一页
-        wx.navigateBack({
-          delta: 1
-        });
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          });
+        }, 800);
       }).catch(() => {
       });
-
     },
 
     onQualityChange(e) {
