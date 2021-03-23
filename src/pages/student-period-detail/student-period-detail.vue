@@ -1,6 +1,13 @@
 <template>
   <div class="period-detail">
-    <van-tabs :active="active" color="#4396f7" animated swipeable sticky>
+    <van-tabs
+      :active="active"
+      color="#4396f7"
+      animated
+      swipeable
+      sticky
+      @change="changeTab"
+    >
       <van-tab title="任务">
         <div class="mission">
           <p>{{ period.period_name }}</p>
@@ -58,6 +65,20 @@
       </van-tab>
     </van-tabs>
 
+    <!-- 发布评价按钮 -->
+    <!--  -->
+    <van-button
+      v-if="active == 3"
+      class="btn-evaluate"
+      round
+      color="#ffd21e"
+      size="small"
+      icon="star-o"
+      @click="toIssueEvaluation"
+    >
+      写评价
+    </van-button>
+
     <!-- 对话框 -->
     <van-dialog id="van-dialog" />
   </div>
@@ -107,6 +128,7 @@ export default {
       this.discussions = discussionData.data;
     },
 
+
     // 点击发布随堂测试
     totestDetail(test_id) {
       console.log('to test detail ' + test_id);
@@ -116,6 +138,10 @@ export default {
     },
 
 
+    // 切换tab
+    changeTab(e) {
+      this.active = e.mp.detail.index;
+    },
 
     // 跳转到讨论详情
     toDiscussionDetail(id) {
@@ -123,6 +149,14 @@ export default {
         url: `/pages/user-discussion-detail/main?discussion_id=${id}`
       });
     },
+
+    // 点击发布评价
+    toIssueEvaluation() {
+      wx.navigateTo({
+        url: `/pages/student-evaluate/main?period_id=${this.period.period_id}`
+      });
+    },
+
   },
 
 
@@ -140,6 +174,8 @@ export default {
 
   // 加载数据
   async beforeMount() {
+    this.active = 1;
+
     // 获取学时详情
     let [data, err] = await this.$awaitWrap(this.$get('weekperiod/selectperiodbyperiodid', {
       id: this.period.period_id
@@ -176,8 +212,16 @@ export default {
 
 <style lang="scss" scoped>
 .period-detail {
+  position: relative;
   height: 100%;
   background: #fff;
+
+  .btn-evaluate {
+    position: fixed;
+    bottom: 30rpx;
+    right: 20rpx;
+    z-index: 99;
+  }
 
   .mission {
     height: 100%;

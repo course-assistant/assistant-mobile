@@ -1,15 +1,5 @@
 <template>
   <div class="period-evaluation">
-    <van-button
-      class="btn-evaluate"
-      round
-      color="#ffd21e"
-      size="small"
-      icon="star-o"
-      @click="toIssueEvaluation"
-    >
-      写评价
-    </van-button>
     <!-- 空提示 -->
     <div v-if="evaluations == null || evaluations.length == 0">
       <van-empty image="search" description="暂无评价" />
@@ -162,13 +152,6 @@ export default {
       this.avg_degree = data.data.avg_degree;
       this.evaluations = data.data.evaluations;
     },
-
-    // 点击发布评价
-    toIssueEvaluation() {
-      wx.navigateTo({
-        url: `/pages/student-evaluate/main?period_id=${this.periodid}`
-      });
-    },
   },
 
 
@@ -178,13 +161,6 @@ export default {
 <style lang="scss" scoped>
 .period-evaluation {
   position: relative;
-
-  .btn-evaluate {
-    position: absolute;
-    bottom: 30rpx;
-    right: 20rpx;
-    z-index: 99;
-  }
 
   .rate {
     width: calc(100% - 30rpx);
