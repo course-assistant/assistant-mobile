@@ -1,7 +1,7 @@
 <template>
   <div class="period-evaluation">
     <!-- 空提示 -->
-    <div v-if="evaluations == null || evaluations.length == 0">
+    <div v-if="evaluation_count == null || evaluation_count == 0">
       <van-empty image="search" description="暂无评价" />
     </div>
 
@@ -21,7 +21,7 @@
             allow-half
             readonly
           />
-          <span class="num">{{ evaluations.length }} 人</span>
+          <span class="num">{{ evaluation_count }} 人</span>
         </div>
 
         <div class="item">
@@ -37,7 +37,7 @@
             allow-half
             readonly
           />
-          <span class="num">{{ evaluations.length }} 人</span>
+          <span class="num">{{ evaluation_count }} 人</span>
         </div>
       </div>
 
@@ -102,6 +102,9 @@ export default {
       avg_quality: '0',
       avg_degree: '0',
 
+      // 评价人数
+      evaluation_count: 0,
+
       // 评价
       evaluations: [
         // {
@@ -151,6 +154,7 @@ export default {
       this.avg_quality = data.data.avg_quality;
       this.avg_degree = data.data.avg_degree;
       this.evaluations = data.data.evaluations;
+      this.evaluation_count = data.data.evaluation_count;
     },
   },
 
