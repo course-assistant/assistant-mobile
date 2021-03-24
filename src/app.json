@@ -12,6 +12,7 @@
     "pages/student-period-detail/main",
     "pages/student-test-detail/main",
     "pages/student-evaluate/main",
+    "pages/student-discussion-issue/main",
 
     "pages/user-weekmission-detail/main",
     "pages/user-discussion-detail/main"

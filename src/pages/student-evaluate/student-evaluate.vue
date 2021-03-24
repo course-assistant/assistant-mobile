@@ -72,7 +72,7 @@ export default {
           wx.navigateBack({
             delta: 1
           });
-        }, 800);
+        }, 1000);
       }).catch(() => {
       });
     },

@@ -66,7 +66,6 @@
     </van-tabs>
 
     <!-- 发布评价按钮 -->
-    <!--  -->
     <van-button
       v-if="active == 3"
       class="btn-evaluate"

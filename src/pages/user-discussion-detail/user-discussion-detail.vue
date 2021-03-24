@@ -1,4 +1,6 @@
 <template>
+  <!-- 讨论详情页面 -->
+
   <div class="user-discussion-detail">
     <!-- 讨论部分 -->
     <div class="discussion">
@@ -26,6 +28,21 @@
         :comment="comment"
       />
     </div>
+
+    <!-- 评论按钮 -->
+    <!-- 只有学生端才显示 -->
+    <van-button
+      v-if="showDuscussBtn"
+      class="btn-discuss"
+      round
+      color="#4396f7"
+      size="small"
+      icon="comment-o"
+      @click="toIssueDiscussion"
+    >
+      我要评论
+    </van-button>
+
     <!-- 评论为空时显示 -->
     <van-empty v-if="comments.length == 0" description="来发评论吧" />
   </div>
@@ -37,6 +54,8 @@ import Comment from '@/components/Comment.vue';
 export default {
   data() {
     return {
+      showDuscussBtn: false,
+
       discussion: {
         discussion_id: 0,
         // discussion_title: '讨论谓词公式与子句集',
@@ -87,14 +106,27 @@ export default {
       }
       this.comments = data.data;
     },
+
+
+    // 跳转到发布评论页面
+    toIssueDiscussion() {
+      wx.navigateTo({
+        url: `/pages/student-discussion-issue/main?discussion_id=${this.discussion.discussion_id}`
+      });
+    },
   },
 
-  // 加载数据
+
   async beforeMount() {
+    // 加载数据
     this.$loading();
     await this.refreshDiscussion(this.discussion.discussion_id);
     await this.refreshComments(this.discussion.discussion_id);
     wx.hideLoading();
+
+    // 判断是否显示评论按钮
+    let type = wx.getStorageSync('hncj_assistant_wx_user_type');
+    this.showDuscussBtn = type === 3;
   },
 
   onLoad(option) {
@@ -106,8 +138,17 @@ export default {
 
 <style lang="scss" scoped>
 .user-discussion-detail {
+  position: relative;
   background: #fff;
   overflow: auto;
+
+  // 评论按钮
+  .btn-discuss {
+    position: fixed;
+    bottom: 30rpx;
+    right: 20rpx;
+    z-index: 99;
+  }
 
   // 评论详情
   .discussion {
