@@ -19,7 +19,6 @@
 import Dialog from '@/../static/vant/dialog/dialog';
 
 export default {
-
   data() {
     return {
       discussion_id: 0,

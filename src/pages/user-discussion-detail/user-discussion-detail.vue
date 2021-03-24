@@ -116,6 +116,18 @@ export default {
     },
   },
 
+  // 下拉刷新
+  async onPullDownRefresh() {
+    console.log("我正在下拉刷新");
+
+    this.$loading();
+    await this.refreshDiscussion(this.discussion.discussion_id);
+    await this.refreshComments(this.discussion.discussion_id);
+    wx.hideLoading();
+
+    wx.stopPullDownRefresh();
+  },
+
 
   async beforeMount() {
     // 加载数据
