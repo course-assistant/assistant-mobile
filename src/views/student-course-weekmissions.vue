@@ -1,5 +1,8 @@
 <template>
   <div class="student-course-weekmissions">
+
+
+
     <div v-for="(week_mission, index) in week_missions" :key="index">
       <MyCell
         :text="week_mission.week_mission_name"
