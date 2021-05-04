@@ -6,15 +6,15 @@
     </div>
     <div class="margin"></div>
 
-    <MyCell text="我的课程" icon="icon-app" color="#93a2f9" @click="jump" />
-    <MyCell text="账号管理" @click="jump" />
+    <MyCell text="我的课程" icon="icon-my-course" @click="jump" />
+    <MyCell text="账号管理" icon="icon-account-management" @click="jump" />
     <div class="margin"></div>
 
-    <MyCell text="帮助中心" @click="jump" />
-    <MyCell text="关于" @click="jump" />
+    <MyCell text="帮助中心" icon="icon-help" @click="jump" />
+    <MyCell text="关于" icon="icon-info" @click="jump" />
     <div class="margin"></div>
 
-    <MyCell text="退出登录" @click="handleLogout" />
+    <MyCell text="退出登录" icon="icon-logout" @click="handleLogout" />
 
     <van-dialog id="van-dialog" />
   </div>
