@@ -11,8 +11,8 @@
     <MyCell text="账号管理" icon="icon-account-management" @click="jump" />
     <div class="margin"></div>
 
-    <MyCell text="帮助中心" icon="icon-help" @click="jump" />
-    <MyCell text="关于" icon="icon-info" @click="jump" />
+    <MyCell text="帮助中心" icon="icon-help" @click="toHelp" />
+    <MyCell text="关于" icon="icon-info" @click="toAbout" />
     <div class="margin"></div>
 
     <MyCell text="退出登录" icon="icon-logout" @click="handleLogout" />
@@ -140,6 +140,15 @@ export default {
       console.log('jump');
     },
 
+    toHelp() {
+      wx.navigateTo({ url: '/pages/help/main' });
+    },
+
+    toAbout() {
+      wx.navigateTo({ url: '/pages/about/main' });
+    },
+
+    
 
     // 点击退出登录
     handleLogout() {

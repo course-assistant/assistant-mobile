@@ -17,7 +17,12 @@
     "pages/student-message-main/main",
 
     "pages/user-weekmission-detail/main",
-    "pages/user-discussion-detail/main"
+    "pages/user-discussion-detail/main",
+
+
+
+    "pages/help/main",
+    "pages/about/main"
   ],
 
 
