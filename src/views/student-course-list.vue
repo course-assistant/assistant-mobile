@@ -41,7 +41,7 @@ export default {
   methods: {
     jump(course_id) {
       wx.navigateTo({
-        url: `/pages/student-course-detail/main?course_id=${course_id}`
+        url: `/pages/student-message-main/main`
       });
     }
   },
@@ -79,7 +79,7 @@ export default {
     flex: 1;
     overflow: auto;
     background: #eeeff3;
-    padding: 0 20rpx 20rpx 20rpx;
+    padding: 0;
   }
 }
 </style>

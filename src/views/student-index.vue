@@ -20,7 +20,7 @@
     <!-- 应用 -->
     <div class="apps">
       <van-grid :border="false">
-        <van-grid-item class="app-item" use-slot @click="notNow">
+        <van-grid-item class="app-item" use-slot @click="toMyCourse">
           <i class="iconfont icon-course" style="color: #08aeab"></i>
           <p class="name">我的课程</p>
         </van-grid-item>
@@ -147,6 +147,13 @@ export default {
         duration: 1500
       });
     },
+    toMyCourse(){
+      wx.showToast({
+        title: '点击跳转到课程页面',
+        icon: 'none',
+        duration: 1500
+      });
+    }
 
 
   },

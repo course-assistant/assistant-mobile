@@ -77,7 +77,7 @@ export default {
     flex: 1;
     overflow: auto;
     background: #eeeff3;
-    padding: 0 20rpx 20rpx 20rpx;
+    padding: 0;
   }
 }
 </style>

@@ -11,7 +11,7 @@
     <!-- tabbar -->
     <van-tabbar :active="active" @change="onTabbarChange">
       <van-tabbar-item icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item icon="orders-o">我的课程</van-tabbar-item>
+      <van-tabbar-item icon="chat-o">消息</van-tabbar-item>
       <van-tabbar-item icon="user-o">账户</van-tabbar-item>
     </van-tabbar>
   </div>
