@@ -71,18 +71,7 @@
       <!--  -->
       <van-tab title="课堂讨论">
         <div class="discussion">
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
-          <Comment :comment="comment" />
+          <DiscussionItem :discussion="discussion" />
         </div>
       </van-tab>
     </van-tabs>
@@ -93,7 +82,7 @@
 import Vue from 'vue'
 import Period from '@/views/student-course-periods.vue';
 
-import Comment from '@/components/Comment.vue';
+import DiscussionItem from '@/components/DiscussionItem.vue';
 
 import WeekMission from '@/views/student-course-weekmissions.vue';
 
@@ -110,7 +99,7 @@ export default {
         course_id: 0
       },
 
-      comment: {
+      discussion: {
         student_avatar: 'https://tanyiqu.oss-cn-hangzhou.aliyuncs.com/assistant/img/avatar/avatar_teacher_female.jpg',
         student_name: '张妍琰',
         comment_date: '2021-2-3',
@@ -123,7 +112,7 @@ export default {
   components: {
     Period,
     WeekMission,
-    Comment
+    DiscussionItem
   },
 
   methods: {
