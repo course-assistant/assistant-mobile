@@ -16,6 +16,8 @@
 
     "pages/student-message-main/main",
 
+
+    "pages/user-course-detail/main",
     "pages/user-weekmission-detail/main",
     "pages/user-discussion-detail/main",
 

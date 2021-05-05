@@ -1,25 +1,48 @@
 <template>
   <div class="discussion-item">
     <!-- 头像部分 -->
-    <div class="info">
-      <img class="avatar" :src="discussion.student_avatar" alt="" />
+    <!-- <div class="info">
+      <img class="avatar" :src="discussion.teacher_avatar" alt="" />
       <div style="margin-left: 18rpx; margin-top: 10rpx">
-        <p class="name">{{ discussion.student_name }}</p>
-        <p class="date">{{ discussion.comment_date }}</p>
+        <p class="name">{{ discussion.teacher_name }}</p>
+        <p class="date">{{ discussion.discussion_date }}</p>
       </div>
     </div>
 
-    <!-- 内容 -->
     <p class="content">
-      {{ discussion.comment_content }}
-    </p>
-    <van-divider />
+      {{ discussion.discussion_title }}
+    </p> -->
+
+    <!-- 内容 -->
+    <!-- <p class="content">
+      {{ discussion.discussion_content }}
+    </p> -->
+
+    <div
+      class="discussion"
+      @click="toDiscussionDetail(discussion.discussion_id)"
+    >
+      <van-tag plain type="primary" style="margin: 0 20rpx">讨论</van-tag>
+      <span>{{ discussion.discussion_title }}</span>
+    </div>
+
+    <!-- <van-divider /> -->
   </div>
 </template>
 
 <script>
 export default {
   props: ['discussion'],
+
+
+  methods: {
+    // 跳转到讨论详情
+    toDiscussionDetail(id) {
+      wx.navigateTo({
+        url: `/pages/user-discussion-detail/main?discussion_id=${id}`
+      });
+    },
+  },
 }
 </script>
 
@@ -28,29 +51,11 @@ export default {
   width: 100%;
   background: #fff;
 
-  .info {
-    margin: 0 20rpx;
+  .discussion {
+    height: 90rpx;
+    border-bottom: solid 1px #f2f2f2;
     display: flex;
-    .avatar {
-      width: 80rpx;
-      height: 80rpx;
-      border-radius: 12rpx;
-    }
-    .name {
-      height: 40rpx;
-      line-height: 40rpx;
-      font-size: 28rpx;
-    }
-    .date {
-      height: 40rpx;
-      line-height: 40rpx;
-      font-size: 24rpx;
-    }
-  }
-
-  .content {
-    margin: 0 20rpx;
-    margin-left: 117rpx;
+    align-items: center;
   }
 }
 </style>

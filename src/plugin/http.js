@@ -9,8 +9,8 @@ const MyHttp = {};
 fly.config.timeout = 30000;
 
 //设置请求基地址
-// fly.config.baseURL = "http://127.0.0.1:8686/"
-fly.config.baseURL = "https://tanyiqu.top:8686/"
+fly.config.baseURL = "http://127.0.0.1:8686/"
+// fly.config.baseURL = "https://tanyiqu.top:8686/"
 
 
 MyHttp.install = (Vue) => {

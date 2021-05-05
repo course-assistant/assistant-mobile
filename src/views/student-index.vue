@@ -130,7 +130,7 @@ export default {
     toCourseDetail(id) {
       console.log('to ' + id);
       wx.navigateTo({
-        url: `/pages/student-course-detail/main?course_id=${id}`
+        url: `/pages/user-course-detail/main?course_id=${id}`
       });
     },
 
