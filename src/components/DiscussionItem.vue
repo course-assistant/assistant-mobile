@@ -1,23 +1,5 @@
 <template>
   <div class="discussion-item">
-    <!-- 头像部分 -->
-    <!-- <div class="info">
-      <img class="avatar" :src="discussion.teacher_avatar" alt="" />
-      <div style="margin-left: 18rpx; margin-top: 10rpx">
-        <p class="name">{{ discussion.teacher_name }}</p>
-        <p class="date">{{ discussion.discussion_date }}</p>
-      </div>
-    </div>
-
-    <p class="content">
-      {{ discussion.discussion_title }}
-    </p> -->
-
-    <!-- 内容 -->
-    <!-- <p class="content">
-      {{ discussion.discussion_content }}
-    </p> -->
-
     <div
       class="discussion"
       @click="toDiscussionDetail(discussion.discussion_id)"
@@ -25,8 +7,6 @@
       <van-tag plain type="primary" style="margin: 0 20rpx">讨论</van-tag>
       <span>{{ discussion.discussion_title }}</span>
     </div>
-
-    <!-- <van-divider /> -->
   </div>
 </template>
 

@@ -66,30 +66,58 @@ export default {
       },
 
       comments: [
-        {
-          comment_id: 0,
-          student_name: '张三',
-          student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-          comment_date: '2021-01-02',
-          comment_content: '不等价',
-        },
-        {
-          comment_id: 0,
-          student_name: '张四',
-          student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-          comment_date: '2021-01-03',
-          comment_content: '谓词公式与子句集不等价',
-        },
+        // {
+        //   comment_id: 0,
+        //   student_name: '张三',
+        //   student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+        //   comment_date: '2021-01-02',
+        //   comment_content: '不等价',
+        // },
+        // {
+        //   comment_id: 0,
+        //   student_name: '张四',
+        //   student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+        //   comment_date: '2021-01-03',
+        //   comment_content: '谓词公式与子句集不等价',
+        // },
       ]
     }
   },
 
   components: { Comment },
 
+  async beforeMount() {
+    // 加载数据
+    this.$loading();
+    await this.refreshDiscussion(this.discussion.discussion_id);
+    await this.refreshComments(this.discussion.discussion_id);
+    wx.hideLoading();
+
+    // 判断是否显示评论按钮
+    let type = wx.getStorageSync('hncj_assistant_wx_user_type');
+    this.showDuscussBtn = type === 3;
+  },
+
+  // onHide() {
+  //   console.log('onHide');
+  // },
+
+  // onShow() {
+  //   console.log('onShow');
+  // },
+
+  onUnload() {
+    console.log('onUnload');
+    this.discussion = {};
+    this.comments = [];
+  },
+
+
   methods: {
     // 刷新讨论
     async refreshDiscussion(id) {
-      let [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectdissbydisscussionid', { id }));
+      let [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectbyid', { id }));
+      // let [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectdissbydisscussionid', { id }));
       if (err) {
         this.$catch(err);
         return;
@@ -100,6 +128,7 @@ export default {
     // 刷新评论
     async refreshComments(id) {
       let [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectcommentsbydisscussionid', { id }));
+      // let [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectcommentsbydisscussionid', { id }));
       if (err) {
         this.$catch(err);
         return;
@@ -126,19 +155,6 @@ export default {
     wx.hideLoading();
 
     wx.stopPullDownRefresh();
-  },
-
-
-  async beforeMount() {
-    // 加载数据
-    this.$loading();
-    await this.refreshDiscussion(this.discussion.discussion_id);
-    await this.refreshComments(this.discussion.discussion_id);
-    wx.hideLoading();
-
-    // 判断是否显示评论按钮
-    let type = wx.getStorageSync('hncj_assistant_wx_user_type');
-    this.showDuscussBtn = type === 3;
   },
 
   onLoad(option) {
