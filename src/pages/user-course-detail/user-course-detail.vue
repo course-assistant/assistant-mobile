@@ -24,6 +24,9 @@
       <van-tab title="课堂讨论">
         <CourseDiscussion ref="discussion" :course_id="course_data.course_id" />
       </van-tab>
+
+      <!-- 统计，仅教师端显示 -->
+      <van-tab title="统计" v-if="showStatistics"> </van-tab>
     </van-tabs>
   </div>
 </template>
@@ -44,6 +47,7 @@ export default {
 
   data() {
     return {
+      showStatistics: false,
       isShow: [],
       activeNames: ['1'],
 
@@ -86,7 +90,11 @@ export default {
     // 更新标题
     wx.setNavigationBarTitle({
       title: this.course_data.course_name
-    })
+    });
+
+    // 判断是否显示统计
+    let type = wx.getStorageSync('hncj_assistant_wx_user_type');
+    this.showStatistics = type === 2;
   },
 
   async mounted() {
