@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 .comment-item {
   width: 100%;
-  //   background: palegreen;
+  background: #fff;
 
   .info {
     margin: 0 20rpx;

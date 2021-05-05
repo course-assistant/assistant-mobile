@@ -14,77 +14,86 @@
       swipeable
       sticky
     >
-      <van-tab
+      <!-- 教学内容 -->
+      <van-tab title="教学内容"></van-tab>
 
-        title="周任务" >
-<!--        <WeekMission-->
-<!--          :course_id="course_data.course_id"-->
-<!--          ref="weekMission"-->
-<!--        />-->
-
-
-
-
+      <!-- 任务 -->
+      <van-tab title="任务">
+        <!--        <WeekMission-->
+        <!--          :course_id="course_data.course_id"-->
+        <!--          ref="weekMission"-->
+        <!--        />-->
 
         <div
-          v-for="(l,index_m) in 3"
+          v-for="(l, index_m) in 3"
           :key="index_m"
-          @click.stop="showRw(index_m)" style="background-color: #fff; padding-left: 10rpx">
-
-          <div style="height: 70rpx;border-bottom: 1px solid #eeeff3;"
-               @click="click_m(index_m)"
+          @click.stop="showRw(index_m)"
+          style="background-color: #fff; padding-left: 10rpx"
+        >
+          <div
+            style="height: 70rpx; border-bottom: 1px solid #eeeff3"
+            @click="click_m(index_m)"
           >
-
-            <img style="width: 32rpx;height: 32rpx;margin-right: 16rpx;" src="../../access/img/任务.png" alt="">
-            第{{index_m+1}}周
-            <van-icon style="float:right;margin-right: 20px" :name="!isShow?'arrow':'arrow-down'" />
+            <img
+              style="width: 32rpx; height: 32rpx; margin-right: 16rpx"
+              src="../../access/img/任务.png"
+              alt=""
+            />
+            第{{ index_m + 1 }}周
+            <van-icon
+              style="float: right; margin-right: 20px"
+              :name="!isShow ? 'arrow' : 'arrow-down'"
+            />
           </div>
 
-<!--          arrow-up-->
+          <!--          arrow-up-->
 
-
-        <ul v-if="isShow[index_m]===1?true:false">
-
-
-
-          <li class="fold_li"
-              v-for="(p,index_li) in 2" :key="index_li"
+          <ul v-if="isShow[index_m] === 1 ? true : false">
+            <li
+              class="fold_li"
+              v-for="(p, index_li) in 2"
+              :key="index_li"
               @click="click_li(index_li)"
-          >
-            <div class="c_li">
-<!--              <img style="width: 32rpx;height: 32rpx;margin-right: 16rpx;" src="../../access/img/pointer-big.png" alt="">-->
-              <img style="width: 32rpx;height: 32rpx;margin-right: 16rpx;" src="../../access/img/finish.png" alt="">
-              任务{{index_li+1}}
-            </div>
-
-
-          </li>
-        </ul>
+            >
+              <div class="c_li">
+                <img
+                  style="width: 32rpx; height: 32rpx; margin-right: 16rpx"
+                  src="../../access/img/finish.png"
+                  alt=""
+                />
+                任务{{ index_li + 1 }}
+              </div>
+            </li>
+          </ul>
         </div>
-
-
       </van-tab>
 
-<!--      <van-tab title="学时任务">-->
-<!--&lt;!&ndash;        <Period :course_id="course_data.course_id" ref="period" />&ndash;&gt;-->
-<!--      </van-tab>-->
-
-
-
+      <!--  -->
+      <van-tab title="课堂讨论">
+        <div class="discussion">
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+          <Comment :comment="comment" />
+        </div>
+      </van-tab>
     </van-tabs>
-
-<!--    <van-toast id="custom-selector" />-->
-
-    <!-- 折叠按钮 -->
-<!--    哈哈哈-->
-
-
   </div>
 </template>
 
 <script>
-  import Vue from 'vue'
-  import Period from '@/views/student-course-periods.vue';
+import Vue from 'vue'
+import Period from '@/views/student-course-periods.vue';
+
+import Comment from '@/components/Comment.vue';
 
 import WeekMission from '@/views/student-course-weekmissions.vue';
 
@@ -92,52 +101,60 @@ export default {
 
   data() {
     return {
-      isShow:[],
+      isShow: [],
       activeNames: ['1'],
 
       active: 0,
 
       course_data: {
         course_id: 0
-      }
+      },
+
+      comment: {
+        student_avatar: 'https://tanyiqu.oss-cn-hangzhou.aliyuncs.com/assistant/img/avatar/avatar_teacher_female.jpg',
+        student_name: '张妍琰',
+        comment_date: '2021-2-3',
+        comment_content: '我觉得话可以'
+      },
 
     }
   },
 
   components: {
     Period,
-    WeekMission
+    WeekMission,
+    Comment
   },
 
   methods: {
     onTabChange(event) {
     },
-    handleClick(){
+    handleClick() {
       console.log('点击了');
     },
-    showRw(index_m){
+    showRw(index_m) {
       // console.log('点击了' + (index_m+1));
 
-      if (this.isShow[index_m]===1){
-        for (let i = 0; i <this.isShow.length ; i++) {
-          Vue.set(this.isShow,i,0)
+      if (this.isShow[index_m] === 1) {
+        for (let i = 0; i < this.isShow.length; i++) {
+          Vue.set(this.isShow, i, 0)
         }
-      }else{
-        for (let i = 0; i <this.isShow.length ; i++) {
-          Vue.set(this.isShow,i,0)
+      } else {
+        for (let i = 0; i < this.isShow.length; i++) {
+          Vue.set(this.isShow, i, 0)
         }
-        Vue.set(this.isShow,index_m,1)
+        Vue.set(this.isShow, index_m, 1)
       }
     },
-    click_li(index_li){
+    click_li(index_li) {
 
       wx.navigateTo({
         url: `/pages/user-weekmission-detail/main`
       });
-      console.log('点击了' + (index_li+1));
+      console.log('点击了' + (index_li + 1));
     },
-    click_m(index_m){
-      console.log('点击了周任务'+(index_m+1));
+    click_m(index_m) {
+      console.log('点击了周任务' + (index_m + 1));
     }
   },
 
@@ -171,13 +188,11 @@ export default {
 
 
 <style lang="scss" scoped>
-
-
-
 .student-course-detail {
   height: 100%;
 
-  background: #f5f6f8;
+  // background: #f5f6f8;
+  background: #fff;
 
   .head {
     position: relative;
@@ -206,20 +221,21 @@ export default {
       font-size: 26rpx;
       color: #fff;
     }
+
+    .discussion {
+      background: pink;
+    }
   }
 }
 
-  .fold_li{
-    position: relative;
-    /*background-color: ##f2f3f5;*/
-    background-color: #fff;
-    height: 70rpx;
-    color: #444444;
-    padding-left: 20rpx;
-    line-height: 70rpx;
-    border-bottom: 1px solid #eeeff3;
-  }
-
-
-
+.fold_li {
+  position: relative;
+  /*background-color: ##f2f3f5;*/
+  background-color: #fff;
+  height: 70rpx;
+  color: #444444;
+  padding-left: 20rpx;
+  line-height: 70rpx;
+  border-bottom: 1px solid #eeeff3;
+}
 </style>
