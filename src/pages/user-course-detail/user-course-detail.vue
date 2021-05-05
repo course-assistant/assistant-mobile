@@ -18,7 +18,13 @@
       <van-tab title="教学内容"> </van-tab>
 
       <!-- 任务 -->
-      <van-tab title="任务"> </van-tab>
+      <van-tab title="任务">
+        <CourseMission
+          ref="lesson"
+          :course_id="course_data.course_id"
+          :teacher="isTeacher"
+        />
+      </van-tab>
 
       <!-- 课堂讨论 -->
       <van-tab title="课堂讨论">
@@ -26,7 +32,7 @@
       </van-tab>
 
       <!-- 统计，仅教师端显示 -->
-      <van-tab title="统计" v-if="showStatistics"> </van-tab>
+      <van-tab title="统计" v-if="isTeacher"> </van-tab>
     </van-tabs>
   </div>
 </template>
@@ -40,14 +46,14 @@ import DiscussionItem from '@/components/DiscussionItem.vue';
 import WeekMission from '@/views/student-course-weekmissions.vue';
 
 
-import CourseLesson from '@/views/user-course-mission.vue';
+import CourseMission from '@/views/user-course-mission.vue';
 import CourseDiscussion from '@/views/user-course-discussion.vue';
 
 export default {
 
   data() {
     return {
-      showStatistics: false,
+      isTeacher: false,
       isShow: [],
       activeNames: ['1'],
 
@@ -64,7 +70,7 @@ export default {
     WeekMission,
     DiscussionItem,
 
-    CourseLesson,
+    CourseMission,
     CourseDiscussion
   },
 
@@ -72,7 +78,7 @@ export default {
     // 加载数据
     async refresh() {
       this.$loading('加载中...');
-      console.log(44);
+      this.$refs.lesson.refresh();
       this.$refs.discussion.refresh();
       wx.hideLoading();
     },
@@ -94,7 +100,7 @@ export default {
 
     // 判断是否显示统计
     let type = wx.getStorageSync('hncj_assistant_wx_user_type');
-    this.showStatistics = type === 2;
+    this.isTeacher = type === 2;
   },
 
   async mounted() {

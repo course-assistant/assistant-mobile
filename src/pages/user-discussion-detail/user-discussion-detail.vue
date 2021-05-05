@@ -44,7 +44,10 @@
     </van-button>
 
     <!-- 评论为空时显示 -->
-    <van-empty v-if="comments.length == 0" description="来发评论吧" />
+    <van-empty
+      v-if="comments == null || comments.length == 0"
+      description="来发评论吧"
+    />
   </div>
 </template>
 
@@ -107,7 +110,6 @@ export default {
   // },
 
   onUnload() {
-    console.log('onUnload');
     this.discussion = {};
     this.comments = [];
   },

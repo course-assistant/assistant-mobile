@@ -5,6 +5,11 @@
       :key="index"
       :discussion="item"
     />
+
+    <van-empty
+      v-if="discussions == null || discussions.length == 0"
+      description="暂无课堂讨论"
+    />
   </div>
 </template>
 
@@ -35,7 +40,7 @@ export default {
   methods: {
     // 刷新讨论
     async refresh() {
-      console.log('course_id ' + this.course_id);
+      console.log('refersh discussion ' + this.course_id);
       let [data, err] = await this.$awaitWrap(this.$get('discussioncomment/selectbycourse', {
         id: this.course_id
       }));
