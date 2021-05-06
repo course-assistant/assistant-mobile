@@ -93,6 +93,13 @@ MyUtil.install = (Vue) => {
       url: '/pages/login/main'
     });
   }
+
+
+  // 换行符替换为<br>
+  Vue.prototype.convertHtml = (str) => {
+    return str.replace(/\n/g, '<br>');
+  };
+
 };
 
 export default MyUtil

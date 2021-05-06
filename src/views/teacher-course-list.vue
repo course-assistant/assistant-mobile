@@ -43,7 +43,6 @@ export default {
     // 跳转到教师的课程详情
     jump(id) {
       wx.navigateTo({
-        // url: `/pages/teacher-course-detail/main?course_id=${id}`
         url: `/pages/user-course-detail/main?course_id=${id}`
       });
     },
@@ -51,13 +50,15 @@ export default {
 
   async mounted() {
     this.$loading('刷新中...');
-
     let [data, err] = await this.$awaitWrap(this.$get('course/findbyteacherid', {
       id: wx.getStorageSync('hncj_assistant_wx_user_id'),
       page: 0,
       size: 1000,
       status: 1
     }));
+    if (err) {
+      return;
+    }
 
     console.log(data);
     this.courses = data.data;

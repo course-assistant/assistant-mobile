@@ -20,7 +20,7 @@
       <!-- 任务 -->
       <van-tab title="任务">
         <CourseMission
-          ref="lesson"
+          ref="mission"
           :course_id="course_data.course_id"
           :teacher="isTeacher"
         />
@@ -78,8 +78,8 @@ export default {
     // 加载数据
     async refresh() {
       this.$loading('加载中...');
-      this.$refs.lesson.refresh();
       this.$refs.discussion.refresh();
+      await this.$refs.mission.refresh();
       wx.hideLoading();
     },
   },

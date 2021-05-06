@@ -33,16 +33,21 @@
             <van-cell
               :title="mission.week_mission_name"
               v-if="mission.week_mission_status == 1"
+              @click="toMissionDetail(mission.week_mission_id)"
               value="已发布"
             />
             <van-cell
               :title="mission.week_mission_name"
               v-else
+              @click="toMissionDetail(mission.week_mission_id)"
               value="未发布"
             />
           </van-cell-group>
           <van-cell-group v-else>
-            <van-cell :title="mission.week_mission_name" />
+            <van-cell
+              :title="mission.week_mission_name"
+              @click="toMissionDetail(mission.week_mission_id)"
+            />
           </van-cell-group>
         </div>
       </van-collapse-item>
@@ -104,20 +109,32 @@ export default {
     }
   },
 
+
   props: ['course_id', 'teacher'],
+
 
   methods: {
     async refresh() {
-      console.log('refresh lesson ' + this.course_id);
+      console.log('refresh mission ' + this.course_id);
       let [data, err] = await this.$awaitWrap(this.$get('week/selectweek', {
         course_id: this.course_id
       }));
+      console.log('mission');
+      console.log(data);
       if (err) {
         wx.hideLoading();
         this.$toast(err);
         return;
       }
       this.weeks = data.data.weeks;
+    },
+
+
+    toMissionDetail(id) {
+      console.log('to mission ' + id);
+      wx.navigateTo({
+        url: `/pages/user-weekmission-detail/main?mission_id=${id}&teacher=${this.teacher}`
+      });
     },
 
 
