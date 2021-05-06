@@ -66,7 +66,19 @@ export default {
   },
 
   async beforeMount() {
-    await this.refresh()
+    await this.refresh();
+  },
+
+
+  // 如果是学生的话，进行查看任务
+  async mounted() {
+    if (this.teacher == "false") {
+      console.log('查看任务');
+      let [data, err] = await this.$awaitWrap(this.$post('week/viewmission', {
+        student_id: wx.getStorageSync('hncj_assistant_wx_user_id'),
+        mission_id: this.week_mission_id
+      }))
+    }
   },
 
   methods: {
@@ -80,7 +92,8 @@ export default {
       }
       this.week_mission = data.data;
       console.log(data);
-    }
+    },
+
   },
 
 
