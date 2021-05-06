@@ -1,9 +1,9 @@
 <template>
   <div>
     <van-collapse :value="activeNames" @change="onChange">
-      <!-- 任务 -->
+      <!-- 教师 -->
       <van-collapse-item
-        v-for="(week, i1) in weeks"
+        v-for="(week, i1) in cweeks"
         :name="week.week_id"
         :key="i1"
       >
@@ -11,7 +11,7 @@
         <div slot="title">
           <div style="display: flex">
             {{ week.week_name }}
-            <div v-if="teacher" style="margin-left: 5px">
+            <div style="margin-left: 5px">
               <van-tag
                 type="primary"
                 v-if="week.week_status == 1"
@@ -28,8 +28,7 @@
 
         <!-- 任务 -->
         <div v-for="(mission, i2) in week.missions" :key="i2">
-          <!-- 教师 显示发布的状态 -->
-          <van-cell-group v-if="teacher">
+          <van-cell-group>
             <van-cell
               :title="mission.week_mission_name"
               v-if="mission.week_mission_status == 1"
@@ -41,12 +40,6 @@
               v-else
               @click="toMissionDetail(mission.week_mission_id)"
               value="未发布"
-            />
-          </van-cell-group>
-          <van-cell-group v-else>
-            <van-cell
-              :title="mission.week_mission_name"
-              @click="toMissionDetail(mission.week_mission_id)"
             />
           </van-cell-group>
         </div>
@@ -112,6 +105,19 @@ export default {
 
   props: ['course_id', 'teacher'],
 
+  computed: {
+    cweeks() {
+      if (!this.teacher) {
+        let w = [];
+        this.weeks.forEach(week => {
+          if (week.week_status == 1)
+            w.push(week);
+        })
+        return w;
+      }
+      return this.weeks;
+    }
+  },
 
   methods: {
     async refresh() {
