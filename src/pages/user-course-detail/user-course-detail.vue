@@ -15,7 +15,13 @@
       sticky
     >
       <!-- 教学内容 -->
-      <van-tab title="教学内容"> </van-tab>
+      <van-tab title="教学内容">
+        <CourseLesson
+          ref="lesson"
+          :course_id="course_data.course_id"
+          :teacher="isTeacher"
+        />
+      </van-tab>
 
       <!-- 任务 -->
       <van-tab title="任务">
@@ -46,6 +52,7 @@ import DiscussionItem from '@/components/DiscussionItem.vue';
 import WeekMission from '@/views/student-course-weekmissions.vue';
 
 
+import CourseLesson from '@/views/user-course-lesson.vue';
 import CourseMission from '@/views/user-course-mission.vue';
 import CourseDiscussion from '@/views/user-course-discussion.vue';
 
@@ -70,6 +77,7 @@ export default {
     WeekMission,
     DiscussionItem,
 
+    CourseLesson,
     CourseMission,
     CourseDiscussion
   },
@@ -78,6 +86,7 @@ export default {
     // 加载数据
     async refresh() {
       this.$loading('加载中...');
+      this.$refs.lesson.refresh();
       this.$refs.discussion.refresh();
       await this.$refs.mission.refresh();
       wx.hideLoading();

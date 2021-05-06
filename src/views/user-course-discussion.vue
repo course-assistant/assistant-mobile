@@ -49,6 +49,7 @@ export default {
         return;
       }
       this.discussions = data.data;
+      console.log('discussion');
       console.log(data);
     },
   },
