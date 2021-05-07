@@ -1,12 +1,25 @@
 <template>
-  <div class="period-evaluation">
-    <div class="user-lesson-detail">
+  <div class="user-lesson-detail">
+    <!-- 课时内容 -->
+    <div class="lesson-detail">
       <p class="title">主讲内容</p>
       <p class="content" v-html="lesson.lesson_content"></p>
     </div>
 
+    <van-button
+      class="btn-evaluate"
+      round
+      type="info"
+      icon="comment-o"
+      color="#ffd21e"
+      size="small"
+      @click="toEvaluate"
+    >
+      课时评价
+    </van-button>
+
     <!-- 空提示 -->
-    <div v-if="evaluation_count == null || evaluation_count == 0">
+    <div v-if="infos.evaluation_count == null || infos.evaluation_count == 0">
       <van-empty image="search" description="暂无评价" />
     </div>
 
@@ -15,7 +28,7 @@
       <div class="rate">
         <div class="item">
           <span>
-            教师教学质量 <span class="score">{{ avg_quality }}</span> 分
+            教师教学质量 <span class="score">{{ infos.avg_quality }}</span> 分
           </span>
           <van-rate
             class="stars"
@@ -26,12 +39,12 @@
             allow-half
             readonly
           />
-          <span class="num">{{ evaluation_count }} 人</span>
+          <span class="num">{{ infos.evaluation_count }} 人</span>
         </div>
 
         <div class="item">
           <span>
-            学生掌握程度 <span class="score">{{ avg_degree }}</span> 分
+            学生掌握程度 <span class="score">{{ infos.avg_degree }}</span> 分
           </span>
           <van-rate
             class="stars"
@@ -42,7 +55,7 @@
             allow-half
             readonly
           />
-          <span class="num">{{ evaluation_count }} 人</span>
+          <span class="num">{{ infos.evaluation_count }} 人</span>
         </div>
       </div>
 
@@ -54,12 +67,16 @@
       >
         <!-- 头像部分 -->
         <div class="info">
-          <img class="avatar" :src="evaluation.student_avatar" alt="" />
+          <img
+            class="avatar"
+            src="https://tanyiqu.oss-cn-hangzhou.aliyuncs.com/assistant/img/avatar/avatar-anonymous.png"
+            alt=""
+          />
 
           <div class="rates">
             <div>
               <van-rate
-                :value="evaluation.period_evaluate_quality"
+                :value="evaluation.evaluate_quality"
                 size="24rpx"
                 icon="star"
                 void-icon="star-o"
@@ -69,7 +86,7 @@
             </div>
             <div>
               <van-rate
-                :value="evaluation.period_evaluate_degree"
+                :value="evaluation.evaluate_degree"
                 size="24rpx"
                 icon="star"
                 void-icon="star-o"
@@ -80,15 +97,12 @@
           </div>
 
           <div style="margin-left: 18rpx; margin-top: 5rpx">
-            <div class="name">
-              {{ evaluation.student_name }}
-            </div>
-            <p class="date">{{ evaluation.period_evaluate_date }}</p>
+            <p class="date">{{ evaluation.evaluate_date }}</p>
           </div>
         </div>
 
         <!-- 内容 -->
-        <p class="content">{{ evaluation.period_evaluate_content }}</p>
+        <p class="content">{{ evaluation.evaluate_content }}</p>
         <van-divider />
       </div>
     </div>
@@ -96,62 +110,42 @@
 </template>
 
 <script>
-import EvaluationItem from '@/components/EvaluationItem.vue';
-
 export default {
 
   data() {
     return {
-
       lesson: {
         lesson_id: 0,
         lesson_name: '课时01',
         lesson_content: '（1）Android简介（了解）\n（2）Android Studio的安装与调试（掌握）。'
       },
 
-      // 平均评分
-      avg_quality: '0',
-      avg_degree: '0',
-
-      // 评价人数
-      evaluation_count: 10,
+      infos: {
+        // 平均评分
+        avg_quality: '0',
+        avg_degree: '0',
+        // 评价人数
+        evaluation_count: 10,
+      },
 
       // 评价
       evaluations: [
         {
-          student_id: 0,
-          student_name: '匿名评价',
-          student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-          period_evaluate_id: 0,
-          period_id: 0,
-          period_evaluate_content: '老师教的很好！',
-          period_evaluate_date: '2021-3-4',
-          period_evaluate_degree: 4,
-          period_evaluate_quality: 5
+          evaluate_content: '老师教的很好！',
+          evaluate_date: '2021-3-4',
+          evaluate_degree: 4,
+          evaluate_quality: 5
         },
-        {
-          student_id: 0,
-          student_name: '匿名评价',
-          student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-          period_evaluate_id: 0,
-          period_id: 0,
-          period_evaluate_content: '老师教的很好！',
-          period_evaluate_date: '2021-3-4',
-          period_evaluate_degree: 3,
-          period_evaluate_quality: 4
-        }
       ],
 
-      showEvaluateDialog: false,
     }
   },
 
-  components: { EvaluationItem },
-
-  props: ['periodid'],
   async beforeMount() {
+    console.log(this.lesson.lesson_id);
     await this.refresh();
   },
+
 
   methods: {
     async refresh() {
@@ -160,24 +154,41 @@ export default {
       this.lesson.lesson_content = this.convertHtml(this.lesson.lesson_content);
     },
 
+
+    toEvaluate() {
+      if (wx.getStorageSync('hncj_assistant_wx_user_type') == 2) {
+        this.$toast('教师不能评价自己的课时');
+        return;
+      }
+      wx.navigateTo({
+        url: '/pages/student-evaluate/main'
+      });
+    },
+
   },
+
+  onLoad(option) {
+    this.lesson.lesson_id = option.lesson_id;
+  }
 
 
 }
 </script>
 
 <style lang="scss" scoped>
-.period-evaluation {
+.user-lesson-detail {
   position: relative;
 
-  .title {
-    margin-left: 10rpx;
-    font-weight: bold;
-  }
+  .lesson-detail {
+    .title {
+      margin-left: 10rpx;
+      font-weight: bold;
+    }
 
-  .content {
-    // margin-top: 10rpx;
-    margin-left: 10rpx;
+    .content {
+      // margin-top: 10rpx;
+      margin-left: 10rpx;
+    }
   }
 
   .rate {
@@ -248,6 +259,13 @@ export default {
       margin-top: 6rpx;
       margin-left: 105rpx;
     }
+  }
+
+  .btn-evaluate {
+    position: fixed;
+    right: 20rpx;
+    bottom: 20rpx;
+    z-index: 99;
   }
 }
 </style>
