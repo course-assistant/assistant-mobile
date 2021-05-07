@@ -195,7 +195,7 @@ export default {
         return;
       }
       wx.navigateTo({
-        url: '/pages/student-evaluate/main'
+        url: `/pages/student-evaluate/main?lesson_id=${this.lesson.lesson_id}`
       });
     },
 

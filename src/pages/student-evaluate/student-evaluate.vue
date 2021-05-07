@@ -61,8 +61,8 @@ export default {
         title: '请确保评价真实有效！',
         message: '评价发布后将不可修改，确定发布？',
       }).then(async () => {
-        let [data, err] = await this.$awaitWrap(this.$post('periodevaluation/issue', {
-          period_id: this.period_id,
+        let [data, err] = await this.$awaitWrap(this.$post('evaluation/issue', {
+          lesson_id: this.lesson_id,
           student_id: wx.getStorageSync('hncj_assistant_wx_user_id'),
           content: this.content,
           degree: this.degree,
