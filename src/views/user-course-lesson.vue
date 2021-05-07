@@ -76,6 +76,7 @@ export default {
       console.log('to ' + id);
       wx.navigateTo({
         url: `/pages/user-lesson-detail/main?lesson_id=${id}`
+        // url: `/pages/demo/main?lesson_id=${id}`
       });
     }
   },

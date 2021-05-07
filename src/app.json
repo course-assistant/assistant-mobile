@@ -23,7 +23,7 @@
     "pages/user-lesson-detail/main",
 
 
-
+    "pages/demo/main",
     "pages/help/main",
     "pages/about/main"
   ],
