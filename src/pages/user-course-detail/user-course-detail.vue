@@ -21,7 +21,6 @@
           :course_id="course_data.course_id"
           :teacher="isTeacher"
         />
-        <PeriodEvalation />
       </van-tab>
 
       <!-- 任务 -->

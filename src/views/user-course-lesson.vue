@@ -75,7 +75,7 @@ export default {
     toLessonDetail(id) {
       console.log('to ' + id);
       wx.navigateTo({
-        url: `/pages/student-evaluate/main?lesson_id=${id}`
+        url: `/pages/user-lesson-detail/main?lesson_id=${id}`
       });
     }
   },
