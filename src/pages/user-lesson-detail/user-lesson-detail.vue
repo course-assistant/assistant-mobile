@@ -32,7 +32,7 @@
           </span>
           <van-rate
             class="stars"
-            :value="avg_quality"
+            :value="infos.avg_quality"
             size="42rpx"
             icon="star"
             void-icon="star-o"
@@ -48,7 +48,7 @@
           </span>
           <van-rate
             class="stars"
-            :value="avg_degree"
+            :value="infos.avg_degree"
             size="42rpx"
             icon="star"
             void-icon="star-o"
@@ -76,7 +76,7 @@
           <div class="rates">
             <div>
               <van-rate
-                :value="evaluation.evaluate_quality"
+                :value="evaluation.evaluation_quality"
                 size="24rpx"
                 icon="star"
                 void-icon="star-o"
@@ -86,7 +86,7 @@
             </div>
             <div>
               <van-rate
-                :value="evaluation.evaluate_degree"
+                :value="evaluation.evaluation_degree"
                 size="24rpx"
                 icon="star"
                 void-icon="star-o"
@@ -97,12 +97,12 @@
           </div>
 
           <div style="margin-left: 18rpx; margin-top: 5rpx">
-            <p class="date">{{ evaluation.evaluate_date }}</p>
+            <p class="date">{{ evaluation.evaluation_date }}</p>
           </div>
         </div>
 
         <!-- 内容 -->
-        <p class="content">{{ evaluation.evaluate_content }}</p>
+        <p class="content">{{ evaluation.evaluation_content }}</p>
         <van-divider />
       </div>
     </div>
@@ -131,10 +131,10 @@ export default {
       // 评价
       evaluations: [
         {
-          evaluate_content: '老师教的很好！',
-          evaluate_date: '2021-3-4',
-          evaluate_degree: 4,
-          evaluate_quality: 5
+          evaluation_content: '老师教的很好！',
+          evaluation_date: '2021-3-4',
+          evaluation_degree: 4,
+          evaluation_quality: 5
         },
       ],
 
@@ -150,10 +150,44 @@ export default {
   methods: {
     async refresh() {
 
+      // 加载课时内容
+      let [d1, e1] = await this.$awaitWrap(this.$get('lesson/selectbylessonid', {
+        id: this.lesson.lesson_id
+      }));
+      console.log('lesson');
+      console.log(d1);
+      this.lesson = d1.data;
+
+      // 加载评价
+      let [d2, e2] = await this.$awaitWrap(this.$get('evaluation/selectbyid', {
+        id: this.lesson.lesson_id
+      }));
+      console.log('evaluation');
+      console.log(d2);
+      this.evaluations = d2.data;
+
+      // 计算平均
+      this.calc();
+
       // 处理换行
       this.lesson.lesson_content = this.convertHtml(this.lesson.lesson_content);
     },
 
+
+    calc() {
+      console.log('计算');
+      this.infos.evaluation_count = this.evaluations.length;
+      let d = 0;
+      let q = 0;
+      this.evaluations.forEach(e => {
+        d += e.evaluation_degree;
+        q += e.evaluation_quality;
+      });
+      console.log(d);
+      console.log(q);
+      this.infos.avg_degree = (d / this.infos.evaluation_count).toFixed(1) + "";
+      this.infos.avg_quality = (q / this.infos.evaluation_count).toFixed(1) + "";
+    },
 
     toEvaluate() {
       if (wx.getStorageSync('hncj_assistant_wx_user_type') == 2) {
