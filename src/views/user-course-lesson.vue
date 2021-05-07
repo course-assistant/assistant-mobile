@@ -1,6 +1,11 @@
 <template>
   <div class="user-course-lesson">
-    <div class="lesson-item" v-for="(lesson, index) in lessons" :key="index">
+    <div
+      class="lesson-item"
+      v-for="(lesson, index) in lessons"
+      :key="index"
+      @click="toLessonDetail(lesson.lesson_id)"
+    >
       <span class="name">{{ lesson.lesson_name }}</span>
 
       <van-rate
@@ -23,7 +28,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -33,18 +37,13 @@ export default {
           lesson_name: '课时01',
           quality: "3.6",
           lesson_status: 1
-        },
-        {
-          lesson_id: 0,
-          lesson_name: '课时02',
-          quality: "4.2",
-          lesson_status: 1
         }
       ],
     }
   },
 
   props: ['course_id', 'teacher'],
+
 
   computed: {
     clesson() {
@@ -60,8 +59,25 @@ export default {
     // 刷新讨论
     async refresh() {
       console.log('refersh lesson ' + this.course_id);
-
+      let [data, err] = await this.$awaitWrap(this.$get('lesson/selectbycourseid', {
+        id: this.course_id
+      }));
+      if (err) {
+        this.$toast(err);
+        return;
+      }
+      this.lessons = data.data;
+      console.log('lesson');
+      console.log(data);
     },
+
+
+    toLessonDetail(id) {
+      console.log('to ' + id);
+      wx.navigateTo({
+        url: `/pages/student-evaluate/main?lesson_id=${id}`
+      });
+    }
   },
 }
 </script>

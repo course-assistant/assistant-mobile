@@ -2,20 +2,20 @@
   <div class="student-evaluate">
     <!-- 评分 -->
     <div class="rate">
-      <p>教学质量</p>
+      <p>教师教学质量</p>
       <van-rate
         :value="rate"
-        size="60rpx"
+        size="55rpx"
         icon="star"
         void-icon="star-o"
         @change="onQualityChange"
       />
     </div>
     <div class="rate">
-      <p>掌握程度</p>
+      <p>自己掌握程度</p>
       <van-rate
         :value="rate"
-        size="60rpx"
+        size="55rpx"
         icon="star"
         void-icon="star-o"
         @change="onDegreeChange"
@@ -28,8 +28,14 @@
     </div>
 
     <!-- 评价按钮 -->
-    <van-button class="btn-evaluate" round color="#feb11d" @click="issue">
-      发表评价
+    <van-button
+      class="btn-evaluate"
+      round
+      color="#feb11d"
+      icon="star-o"
+      @click="issue"
+    >
+      匿名评价
     </van-button>
 
     <!-- 确认弹框 -->
@@ -52,7 +58,7 @@ export default {
   methods: {
     issue() {
       Dialog.confirm({
-        title: '提示',
+        title: '请确保评价真实有效！',
         message: '评价发布后将不可修改，确定发布？',
       }).then(async () => {
         let [data, err] = await this.$awaitWrap(this.$post('periodevaluation/issue', {
@@ -91,7 +97,7 @@ export default {
   },
 
   onLoad(option) {
-    this.period_id = option.period_id;
+    this.lesson_id = option.lesson_id;
   },
 }
 </script>

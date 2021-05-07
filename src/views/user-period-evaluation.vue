@@ -103,32 +103,32 @@ export default {
       avg_degree: '0',
 
       // 评价人数
-      evaluation_count: 0,
+      evaluation_count: 10,
 
       // 评价
       evaluations: [
-        // {
-        //   student_id: 0,
-        //   student_name: '张三',
-        //   student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-        //   period_evaluate_id: 0,
-        //   period_id: 0,
-        //   period_evaluate_content: '老师教的很好！',
-        //   period_evaluate_date: '2021-3-4',
-        //   period_evaluate_degree: 4,
-        //   period_evaluate_quality: 5
-        // },
-        // {
-        //   student_id: 0,
-        //   student_name: '张四',
-        //   student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-        //   period_evaluate_id: 0,
-        //   period_id: 0,
-        //   period_evaluate_content: '老师教的很好！',
-        //   period_evaluate_date: '2021-3-4',
-        //   period_evaluate_degree: 3,
-        //   period_evaluate_quality: 4
-        // }
+        {
+          student_id: 0,
+          student_name: '匿名评价',
+          student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          period_evaluate_id: 0,
+          period_id: 0,
+          period_evaluate_content: '老师教的很好！',
+          period_evaluate_date: '2021-3-4',
+          period_evaluate_degree: 4,
+          period_evaluate_quality: 5
+        },
+        {
+          student_id: 0,
+          student_name: '匿名评价',
+          student_avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+          period_evaluate_id: 0,
+          period_id: 0,
+          period_evaluate_content: '老师教的很好！',
+          period_evaluate_date: '2021-3-4',
+          period_evaluate_degree: 3,
+          period_evaluate_quality: 4
+        }
       ],
 
       showEvaluateDialog: false,
@@ -142,19 +142,19 @@ export default {
   methods: {
 
     async refreshEvaluations() {
-      let [data, err] = await this.$awaitWrap(this.$get('periodevaluation/select', {
-        period_id: this.periodid
-      }));
-      if (err) {
-        this.$catth(err);
-        return;
-      }
-      console.log('查询评价');
-      console.log(data);
-      this.avg_quality = data.data.avg_quality;
-      this.avg_degree = data.data.avg_degree;
-      this.evaluations = data.data.evaluations;
-      this.evaluation_count = data.data.evaluation_count;
+      // let [data, err] = await this.$awaitWrap(this.$get('periodevaluation/select', {
+      //   period_id: this.periodid
+      // }));
+      // if (err) {
+      //   this.$catth(err);
+      //   return;
+      // }
+      // console.log('查询评价');
+      // console.log(data);
+      // this.avg_quality = data.data.avg_quality;
+      // this.avg_degree = data.data.avg_degree;
+      // this.evaluations = data.data.evaluations;
+      // this.evaluation_count = data.data.evaluation_count;
     },
   },
 

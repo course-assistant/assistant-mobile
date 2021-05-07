@@ -21,6 +21,7 @@
           :course_id="course_data.course_id"
           :teacher="isTeacher"
         />
+        <PeriodEvalation />
       </van-tab>
 
       <!-- 任务 -->
@@ -45,6 +46,7 @@
 
 <script>
 import Vue from 'vue'
+import PeriodEvalation from '@/views/user-period-evaluation.vue';
 import Period from '@/views/student-course-periods.vue';
 
 import DiscussionItem from '@/components/DiscussionItem.vue';
@@ -76,7 +78,7 @@ export default {
     Period,
     WeekMission,
     DiscussionItem,
-
+    PeriodEvalation,
     CourseLesson,
     CourseMission,
     CourseDiscussion
